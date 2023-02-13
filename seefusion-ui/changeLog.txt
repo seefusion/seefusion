@@ -1,0 +1,7 @@
+5.01.03:
+- remove debugging value of duration from profile recording form
+
+5.01.04:
+- fixed delete profile
+- improved performance of profiling
+- starting/stopping profile spinner buttons improved.

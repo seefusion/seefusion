@@ -1,0 +1,11 @@
+<tests>
+	<testGetQuerySummary>
+		<queryText><![CDATA[Select distinct a.parameter_name, a.parameter_sort_name,
+a.parameter_code + '|' + isnull(parameter_short_name, left(parameter_name, 15)) parameter_code
+from locus_eim_demo.DBO.parameter a, locus_eim_demo.DBO.site_parameter b
+where a.parameter_code = b.parameter_code
+and b.site_entity in ('Martinez')
+and parameter_code in (select distinct parameter_code from locus_eim_demo.DBO.field_sample_result)
+
+order by parameter_name{dsn=locus_eim_demo}
+java.sql.SQLException: [Macromedia][SQLServer JDBC Driver][SQLServer]Ambiguous column name 'PARAMETER_CODE'.]]></queryText></testGetQuerySummary></tests>

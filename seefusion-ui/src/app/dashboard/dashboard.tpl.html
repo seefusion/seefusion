@@ -1,0 +1,12 @@
+<div>
+	<div class="content content-wide">
+		<ul class="nav nav-tabs">
+		  <li ng-class="{active:$state.includes('dashboard.all')}"><a ui-sref="dashboard.all">All</a></li>
+		  <li ng-class="{active:$state.includes('dashboard.problems')}"><a ui-sref="dashboard.problems">Problems</a></li>
+		  <li ng-class="{active:$state.includes('dashboard.incidents') && !$state.includes('dashboard.incidents.detail')}"><a ui-sref="dashboard.incidents">Incidents</a></li>
+		  <li ng-show="$state.includes('dashboard.incidents.detail')" ng-class="{active:$state.includes('dashboard.incidents.detail')}"><a name="details" ui-sref="dashboard.incidents">Incident Details <span class="glyphicons remove leftMargin handcursor"></span></a></li>
+	
+		</ul>
+	</div>
+	<div class="push-down" ui-view></div>
+</div>

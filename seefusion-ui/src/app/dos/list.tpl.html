@@ -1,0 +1,46 @@
+<div class="panel panel-default" ng-show="addingExclusion">
+	<div class="panel-heading">
+		<h3 class="panel-title">Add an IP Addresses</h3>
+	</div>
+	<div class="content panel-body">
+		<form class="form-horizontal" name="dos_exclusion"> 
+			<p>This IP address will <u>never</u> get banned</p>
+			<input type="text" id="ip" name="ip" ng-model="newExclusion.ip" placeholder="New IP Address" ng-pattern='/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/'>
+			<button class="btn btn-sm btn-primary" type="button" ng-click="insertExclusion()">Add IP</button>
+			<button class="btn btn-sm btn-primary" type="button" ng-click="closeExclusion()">Cancel</button>
+		</form>
+	</div>
+</div>
+
+
+<div class="nopadding panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Banned IP Addresses</h3>
+	</div>
+	<div class="content panel-body">
+		<tabset class="config">
+			<tab ng-repeat="ipList in blockLists" heading="{{ipList.label}}" data-spy="scroll" active="ipList.isActive">
+				<a name="{{ipList.label}}"></a>
+				<div class="table-responsive">
+					<table class="table table-striped table-hover">
+						<tbody>
+							<tr>
+								<th>{{ipList.hint}}</th>
+								<th ng-show="ipList.isExclude"><span class="glyphbutton glyphicons plus linkish" ng-click="addExclusion()" title="Add an exclusion IP address"></span></th>
+							</tr>
+							<tr ng-repeat="ip in dosStatus[ipList.element]">
+								<td>{{ip}}</td>
+								<td>
+									<span class="glyphbutton glyphicons remove linkish" ng-click="removeIP(ipList.element,ip)" title="Remove this IP"></span>
+								</td>
+							</tr>
+							<tr ng-show="dosStatus[ipList.element].length==0">
+								<td colspan="2"><div class="alert relative alert-info" role="alert">No IPs Recorded</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</tab>
+		</tabset>
+	</div>
+</div>

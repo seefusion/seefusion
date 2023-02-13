@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="SeeFusion" default="build" basedir="../">
+
+	<description>SeeFusion</description>
+	
+	<target name="init" description="Initializes a project and all relevant data">
+
+	</target>
+
+	<target name="sync" depends="init">
+		<sync todir="${sitedir}">
+			<fileset dir="${working}">
+				<include name="dist/**"/>
+				<exclude name="jenkins/"/>
+				<exclude name="vendor/"/>
+				<exclude name="node_modules/"/>
+				<exclude name="bower_components/"/>
+				<exclude name="src/"/>
+			</fileset>
+			<preserveintarget>
+				<include name="**/web.config"/>
+			</preserveintarget>
+		</sync>
+
+	</target>
+
+	<target name="build" depends="sync">
+		<echo>${sitedir}</echo>
+		<echo>Build Complete</echo>		
+	</target>
+	
+</project>

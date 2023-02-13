@@ -1,0 +1,39 @@
+<div ng-show="initialLoading" class="alert relative alert-info">
+	<img src="/img/spinner.gif"> Loading server list...
+</div>
+
+<div ng-hide="initialLoading">
+	<div ng-hide="servers.length" class="alert relative alert-info" role="alert">
+	  No servers to list right now...
+	</div>
+
+	<table class="table table-striped table-hover table-condensed" ng-show="servers.length">
+	<thead>
+		<tr>
+			<th>Server</th>
+			<th>Status</th>
+			<th>Uptime</th>
+			<th width="100">Memory</th>
+			<th width="100">Active Pages</th>
+			<th width="100">Pages/Sec</th>
+			<th width="100">Qrys/Sec</th>
+			<th width="100">Avg Page Ms</th>
+			<th width="100">Avg Qry Ms</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="server in servers" ng-click="openServer(server);">
+			<td>{{server.name}}</td>
+			<td>{{server.status}}</td>
+			<td>{{server.uptime}}</td>
+			<td><progress-bar cur="$parent.server.memory.used" max="$parent.server.memory.total" title="{{mb($parent.server.memory.used)}}M / {{mb($parent.server.memory.total)}}M">{{(server.memory.used/server.memory.total*100) | number:1}}%</progress-bar>
+			</td>
+			<td><progress-bar cur="$parent.server.numcurrentrequests" max="$parent.server.maxcurrentrequests">{{server.numcurrentrequests}}/{{server.maxcurrentrequests}}</progress-bar></td>
+			<td><progress-bar cur="$parent.server.pps" max="100">{{server.pps | number:1}}</progress-bar></td>
+			<td><progress-bar cur="$parent.server.qps" max="1000">{{server.qps | number:1}}</progress-bar></td>
+			<td><progress-bar cur="$parent.server.avgpagetime" max="$parent.server.slowpagethreshold" title="{{$parent.server.avgpagetime}}/{{$parent.server.slowpagethreshold}}">{{server.avgpagetime | number}}</progress-bar></td>
+			<td><progress-bar cur="$parent.server.avgqrytime" max="$parent.server.slowquerythreshold" title="{{$parent.server.avgqrytime}}/{{$parent.server.slowqrythreshold}}">{{server.avgqrytime | number}}</progress-bar></td>
+		</tr>
+	</tbody>
+	</table>
+</div>

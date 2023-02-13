@@ -1,0 +1,72 @@
+<div ng-show="initialLoading" class="alert relative alert-info">
+	<img src="/img/spinner.gif"> Loading Counters...
+</div>
+
+<div ng-hide="initialLoading">	
+	<!-- <div class="row">
+		<div class="col-sm-12 text-right"><label>Search: <input ng-model="searchText"></label></div>
+	</div> --> 
+	<p><button class="btn btn-sm btn-primary" type="button" ng-click="clear()">Clear</button></p>
+	
+	<table class="table table-striped table-hover">
+		<tr>
+			<th ng-click="sortType = 'timestamp'; sortReverse = !sortReverse">
+	           Timestamp 
+	            <span ng-show="sortType == 'timestamp' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'timestamp' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+			<th  align="center" ng-click="sortType = 'pageCount'; sortReverse = !sortReverse">
+	           Completed Reqs
+	            <span ng-show="sortType == 'pageCount' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'pageCount' && sortReverse" class="dropup"><span class="caret"></span></span> 
+			</th>
+			<th  align="center" ng-click="sortType = 'avgPageTimeMs'; sortReverse = !sortReverse">
+	           Avg Req ms
+	            <span ng-show="sortType == 'avgPageimeMs' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'avgPageimeMs' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+			<th  align="center" ng-click="sortType = 'queryCount'; sortReverse = !sortReverse">
+	           Completed Queries
+	            <span ng-show="sortType == 'queryCount' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'queryCount' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+			<th  align="center" ng-click="sortType = 'avgQueryTimeMs'; sortReverse = !sortReverse">
+	           Avg Query ms
+	            <span ng-show="sortType == 'avgQueryTimeMs' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'avgQueryTimeMs' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+			<th  align="center" ng-click="sortType = 'memoryUsedMiB'; sortReverse = !sortReverse" title="Memory Used">
+	           Memory
+	            <span ng-show="sortType == 'memoryUsedMiB' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'memoryUsedMiB' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+			<th ng-click="sortType = 'uptime'; sortReverse = !sortReverse">
+	           Uptime
+	            <span ng-show="sortType == 'uptime' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'uptime' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+			<th  align="center" ng-click="sortType = 'aactiveRequests'; sortReverse = !sortReverse">
+	           Active Reqs
+	            <span ng-show="sortType == 'aactiveRequests' && !sortReverse" class="caret"></span>
+	            <span ng-show="sortType == 'aactiveRequests' && sortReverse" class="dropup"><span class="caret"></span></span>
+			</th>
+		</tr>
+	<!--
+	{"duration":10,"pageCount":0,"memoryUsedMiB":38,"avgQueryTimeMs":0,"memoryTotalMiB":274,"avgPageTimeMs":0,"queryCount":0,"memoryAvailableMiB":235,"loadAverage":-1,"activeRequests":0,"timestamp":1463669475566,"uptime":"10:28.8"}
+	-->
+		<tr ng-repeat="counter in counters | orderBy:sortType:sortReverse | startFrom:(currentPage-1)*pageSize | limitTo:pageSize"> 
+			<td align="center">{{counter.timestamp | date: 'MMM dd yyyy h:mm:ss a' }}</td>
+			<td align="center">{{counter.pageCount}}</td>
+			<td align="center">{{counter.avgPageTimeMs}}</td>
+			<td align="center">{{counter.queryCount}}</td>
+			<td align="center">{{counter.avgQueryTimeMs}}</td>
+			<td align="center"> 
+				<span ng-show="counter.memoryUsedMiB >= 2000">{{counter.memoryUsedMiB/1000}} GB</span>
+				<span ng-show="counter.memoryUsedMiB < 2000">{{counter.memoryUsedMiB}} MB</span></td>
+			<td align="center">{{counter.uptime}}</td>
+			<td align="center">{{counter.activeRequests}}</td>
+		</tr>
+	</table>
+
+	<pagination ng-model="currentPage" total-items="totalItems" items-per-page="pageSize" class="pagination-sm" ng-show="noOfPages > 1"></pagination>
+</div>

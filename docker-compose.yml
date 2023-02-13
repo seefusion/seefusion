@@ -1,0 +1,30 @@
+version: "2"
+
+services:
+  oracle:
+    build: ./oracle-docker
+    shm_size: 1g
+    ports:
+     - "1521:1521"
+    environment:
+     - ORACLE_ALLOW_REMOTE=true
+  mysql:
+    build: ./mysql-docker
+    ports:
+     - "3306:3306"
+    expose:
+     - 3306
+    environment:
+     - "MYSQL_RANDOM_ROOT_PASSWORD=true"
+  seelucee:
+    build: ./testpages-lucee-docker
+    ports:
+     - "8888:8888"
+     - "8999:8999"
+    links:
+     - mysql
+    environment:
+     - "SF_httpPassword=rpCH35Ofo7zfjW2JgqxY5Pg9Ani4I8hWPGTJiBSCDmA=:8139228953099888812" # mypassword
+#volumes:
+# - /workbench/lucee-dockerfiles/lucee-nginx/5.0/lucee-server.xml:/opt/lucee/server/lucee-server/context/lucee-server.xml
+# - /workbench/lucee-dockerfiles/lucee-nginx/5.0/lucee-web.xml:/opt/lucee/web/lucee-web.xml.cfm

@@ -1,0 +1,78 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="panel panel-default">
+				<div class="panel-heading">Profile Summary</div>
+				<div class="panel-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-5 text-right">Profile Label:</div>
+							<div class="col-sm-7">{{profileInfo.name}}</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 text-right">Recorded On:</div>
+							<div class="col-sm-7">{{profileInfo.startTick | date: 'MMM dd yyyy h:mm a'}}</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 text-right">Profile Duration:</div>
+							<div class="col-sm-7">{{profileInfo.actualDurationMs | millSecondsToTimeString}}</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 text-right">Recording Interval:</div>
+							<div class="col-sm-7">
+								<span ng-show="{{profileInfo.intervalMs > 999}}">{{profileInfo.intervalMs | millSecondsToTimeString}}</span>
+								<span ng-hide="{{profileInfo.intervalMs > 999}}">{{profileInfo.intervalMs}} ms</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-5 text-right">Total Captured:</div>
+							<div class="col-sm-7">{{profileInfo.snapshotCount}}</div>
+						</div>
+					</div> <!-- container -->
+				</div> <!-- panel body -->
+			</div> <!-- panel -->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Recorded Traces</div>
+				<div class="panel-body scrollHorizontal">
+					<div ng-repeat="profile in profiles">
+						<a ng-click="showTrace(profile)">{{profile.count}}:{{profile.description}}</a>
+					</div>
+					<div ng-hide="profiles">None Recorded</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-7">
+			<div class="panel panel-default">
+				<div class="panel-heading">Trace Details</div>
+				<div class="panel-body scrollHorizontal" ng-show="stacktrace">
+					<p><strong>{{stacktrace.description}}</strong><br/>Seen {{stacktrace.count}} times</p>
+					<div ng-repeat="analysis in stacktrace.analysis" style="margin-top:2em;">
+						<div><a href="#" onClick="return false;" ng-click="showtrace(stacktrace)">Seen {{analysis.count}} times: {{analysis.description}}</a></div>
+						<div class="seethread" ng-repeat="thread in analysis.threads">
+							<div>
+								<abbr ng-show="thread.ref" class="threadName {{thread.importance}}" title="{{infos[thread.ref].description}}">Example {{$index+1}} (Seen {{thread.count}} times):</abbr>
+								<span ng-hide="thread.ref" class="threadName {{thread.importance}}">{{thread.name}}</span>
+							</div>
+							<div ng-repeat="method in thread.methods" class="method">
+								<span ng-show="method.package">
+									<abbr class="{{seestack.infos[method.packageInfo].importance}}" title="{{infos[method.packageInfo].description}}">{{method.package}}</abbr>
+									<abbr ng-show="method.methodInfo" class="{{method.importance}}" title="{{infos[method.methodInfo].description}}">{{method.rawLineAfterPackage}}</abbr>
+									<span ng-hide="method.methodInfo" class="{{method.importance}}">{{method.rawLineAfterPackage}}</span>
+								</span>
+								<span ng-hide="method.package" class="{{method.importance}}">
+									<abbr ng-show="method.methodInfo" class="{{method.importance}}" title="{{infos[method.methodInfo].description}}">{{method.rawLine}}</abbr>
+									<span ng-hide="method.methodInfo" class="{{method.importance}}">{{method.rawLine}}</span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body" ng-hide="stacktrace">
+					None Recorded
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

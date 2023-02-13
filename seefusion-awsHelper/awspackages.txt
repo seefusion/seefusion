@@ -1,0 +1,16 @@
+com/amazonaws/[^/]\+\.[^/]\+
+com/amazonaws/auth/.\+
+com/amazonaws/internal/auth/[^/]\+\.[^/]\+
+com/amazonaws/internal/config/[^/]\+\.[^/]\+
+com/amazonaws/log/[^/]\+\.[^/]\+
+com/amazonaws/metrics/[^/]\+\.[^/]\+
+com/amazonaws/services/cloudwatch/.\+
+com/amazonaws/transform/[^/]\+\.[^/]\+
+com/amazonaws/util/[^/]\+\.[^/]\+
+com/amazonaws/retry/[^/]\+\.[^/]\+
+com/amazonaws/http/.\+
+com/amazonaws/internal/[^/]\+\.[^/]\+
+com/amazonaws/sdk/[^/]\+\.[^/]\+
+com/amazonaws/handlers/[^/]\+\.[^/]\+
+com/amazonaws/event/[^/]\+\.[^/]\+
+com/amazonaws/jmx/spi/[^/]\+\.[^/]\+

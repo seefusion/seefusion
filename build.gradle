@@ -1,0 +1,52 @@
+
+apply plugin: 'java'
+project.version = '5.6.FINAL'
+
+allprojects {
+    group = 'net.darylb.seefusion'
+    version = project.version
+}
+
+subprojects {
+    apply plugin: 'java'
+//    apply plugin: 'pmd'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    sourceCompatibility = '1.8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
+configurations {
+	SeeFusion
+}
+
+def seeFusionProjects = [
+	':seestack',
+	':seefusion-util',
+	':seefusion-main',
+	':seefusion-installer',
+	':seefusion-tomcat7Helper',
+	':seefusion-tomcat8Helper',
+]
+
+
+jar {
+	archiveFileName = "seefusion-${project.version}.jar"
+	manifest {
+		attributes (
+            'Implementation-Title': "SeeFusion",
+            'Implementation-Version': project.version,
+            'Main-Class': 'com.seefusion.installer.Main'
+ 		)
+	}
+	seeFusionProjects.each { subproject ->
+		from project(subproject).sourceSets.main.output
+	}
+}

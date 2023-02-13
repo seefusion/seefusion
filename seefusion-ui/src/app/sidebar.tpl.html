@@ -1,0 +1,26 @@
+<ul ng-show="showNav"  class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+	<!-- ng-if="isAuthenticated" -->
+	<!-- Server -->
+	<li ui-sref="server.active" title="Server"><span class="glyphicons imac" ng-class="$state.includes('server') ? 'icon_link' : 'white'"></span></li>
+	<!-- Dashboard -->
+	<li ui-sref="dashboard.all" title="Dashboard"><span class="glyphicons dashboard" ng-class="$state.includes('dashboard') ? 'icon_link' : 'white'"></span></li>
+	<!-- Counters -->
+	<li ui-sref="counters" title="Counters"><span class="glyphicons list" ng-class="$state.includes('counters') ? 'icon_link' : 'white'"></span></li>
+	<!-- Configuration -->
+	<li ui-sref="config" title="Configuration"><span class="glyphicons settings" ng-class="$state.includes('config') ? 'icon_link' : 'white'"></span></li>
+	<!-- Active Monitoring -->
+	<li ui-sref="monitoring.rules" title="Active Monitoring"><span class="glyphicons cardio" ng-class="$state.includes('monitoring') ? 'icon_link' : 'white'"></span></li>
+	<!-- Stack -->
+	<li ui-sref="stack.seestack({threadname:'',requestid:''})" title="Stack"><span class="glyphicons show_lines" ng-class="$state.includes('stack') ? 'icon_link' : 'white'"></span></li>
+	<!-- Profiling -->
+	<li ui-sref="profiling" title="Profiling"><span class="glyphicons stats" ng-class="$state.includes('profiling') || $state.includes('profile') ? 'icon_link' : 'white'"></span></li>
+	<!-- DOS Protection -->
+	<li ui-sref="dos" title="DOS Protection"><span class="glyphicons shield" ng-class="$state.includes('dos') ? 'icon_link' : 'white'"></span></li>
+	<!-- Logging -->
+	<li ui-sref="log" title="Log"><span class="glyphicons log_book" ng-class="$state.includes('log') ? 'icon_link' : 'white'"></span></li>
+	<!-- About -->
+	<li ui-sref="about" title="About"><span class="glyphicons circle_question_mark"  ng-class="$state.includes('about') ? 'icon_link' : 'white'"></span></li>
+	
+	<li ng-click="logout()" title="Logout"><span class="glyphicons white log_out"></span></li>
+	<!-- <li ng-click="toggleNav()" class="dark"><span class="glyphicons white resize_small"></span></li> -->
+</ul> 

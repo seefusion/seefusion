@@ -1,0 +1,55 @@
+<div ui-view ng-show="$state.includes('dashboard.incidents.detail')"></div>
+
+<div ng-hide="$state.includes('dashboard.incidents.detail')">
+
+<div ng-show="initialLoading" class="alert relative alert-info">
+	<img src="/img/spinner.gif"> Loading incidents...
+</div>
+
+<div ng-hide="initialLoading">
+
+	<div ng-hide="incidents.length" class="alert relative alert-info" role="alert">
+	  No incidents to list right now...
+	</div>
+
+	<div ng-show="incidents.length">		
+			<!-- <div class="row">
+				<div class="col-sm-12 text-right"><label>Search: <input ng-model="searchText"></label></div>
+			</div> -->
+		
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>Label</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Threshold Type</th>
+					<th>Action Taken</th>
+					<th></th>
+				</tr>
+				<!--  -->
+				<tr ng-repeat="incident in incidents | startFrom:(currentPage-1)*pageSize | limitTo:pageSize" ng-click="setSelectedIncident(incident.incidentID)" ui-sref="dashboard.incidents.detail({id:incident.incidentID})"  ng-class="{highlighted: incident.incidentID === idSelectedIncident}"> 
+				<!-- <tr ng-repeat="incident in filtered = incidents | filter:searchText | startFrom:(currentPage-1)*pageSize | limitTo:pageSize">-->
+					<td>{{incident.incidentType}}</td>
+					<td>{{incident.beginTime | date: 'MMM dd yyyy h:mm a'}}</td>
+					<td>{{incident.endTime | date: 'MMM dd yyyy h:mm a'}}</td>
+					<td>{{incident.thresholdType}} 
+					({{incident.thresholdValue}} 
+					<span ng-switch on="incident.thresholdType">
+					  <span ng-switch-when="ACTIVEREQ">)</span>
+					  <span ng-switch-when="">)</span>
+					  <span ng-switch-when="MEMORYPCT">%)</span>
+					  <span ng-switch-default>Ms)</span>
+					</span>
+					</td>
+					<td>{{incident.actionTaken}}</td>
+					<td>
+						<span class="glyphbutton glyphicons remove linkish" ng-click="removeIncident(incident.incidentID)" title="Delete this Incident"></span>
+					</td>
+					
+				</tr>
+			</table>
+
+			<pagination ng-model="currentPage" total-items="totalItems" items-per-page="pageSize" class="pagination-sm" ng-show="noOfPages > 1"></pagination>
+	</div>
+</div>
+</div> 

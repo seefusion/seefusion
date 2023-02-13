@@ -1,0 +1,21 @@
+<div class="modal-header">
+	<h3 class="modal-title">{{modal.title}}</h3>
+</div>
+	<div class="modal-body chart">
+		<nvd3-line-chart
+		id="chartModal"
+		data="charts[modal.chart]"
+		showXAxis="true"
+		showYAxis="true"
+		tooltips="true"
+		interactive="true"
+		showLegend="true"
+		xAxisTickFormat="chartDateFormat()">
+		</nvd3-line-chart>
+	</div>
+		
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-default" ng-click="modalCancel()">Close</button>
+</div>

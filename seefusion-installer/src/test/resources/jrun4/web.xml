@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app id="adobe_coldfusion">
+    <display-name>Adobe ColdFusion 8</display-name>
+    <description>Adobe ColdFusion 8</description>
+    <context-param id="coldfusion_context_1">
+        <param-name>cftags</param-name>
+        <param-value>/WEB-INF/cftags</param-value>
+        <description>Path to search for built-in tags. Relative to application root.
+            This parameter can only be one path element.</description>
+    </context-param>
+    <context-param id="coldfusion_context_2">
+        <param-name>coldfusion.compiler.outputDir</param-name>
+        <param-value>/WEB-INF/cfclasses</param-value>
+        <description>This is the directory where we will place compiled
+            pages. It must be relative to the webapp root.</description>
+    </context-param>
+    <context-param id="coldfusion_context_4">
+        <param-name>cfx.registry.nativelibrary</param-name>
+        <param-value>cfregistry</param-value>
+        <description>Native library that implements CFX_REGISTRY.
+            Used on Windows only.</description>
+    </context-param>
+    <context-param id="coldfusion_context_5">
+        <param-name>cfx.report.nativelibrary</param-name>
+        <param-value>cfreport</param-value>
+        <description>Native library that implements CFX_REPORT.
+            Used on Windows only.</description>
+    </context-param>
+    <context-param id="coldfusion_context_88">
+        <param-name>cf.class.path</param-name>
+        <param-value>
+            ./WEB-INF/cfusion/lib/updates,./WEB-INF/cfusion/lib,./WEB-INF/cfusion/gateway/lib,./WEB-INF/flex/jars,./WEB-INF/cfform/jars</param-value>
+    </context-param>
+    <context-param id="coldfusion_context_89">
+        <param-name>cf.lib.path</param-name>
+        <param-value>./WEB-INF/cfusion/lib</param-value>
+    </context-param>
+
+    <!-- CF Monitoring Filter  -->
+    <filter>
+        <filter-name>CFMonitoringFilter</filter-name>
+        <filter-class>coldfusion.bootstrap.BootstrapFilter</filter-class>
+        <init-param>
+            <param-name>filter.class</param-name>
+            <param-value>coldfusion.monitor.event.MonitoringServletFilter</param-value>
+        </init-param>
+    </filter>
+
+    <!-- Cache Filter for cfform swfs -->
+    <filter>
+        <filter-name>CFCacheFilter</filter-name>
+        <filter-class>coldfusion.bootstrap.BootstrapFilter</filter-class>
+        <init-param>
+            <param-name>filter.class</param-name>
+            <param-value>flex.server.j2ee.cache.CacheFilter</param-value>
+        </init-param>
+    </filter>
+
+    <!-- Request Control Filter for Flash Remoting servlets-->
+    <filter>
+        <filter-name>FlashRemotingControlFilter</filter-name>
+        <filter-class>coldfusion.bootstrap.BootstrapFilter</filter-class>
+        <init-param>
+            <param-name>filter.class</param-name>
+            <param-value>coldfusion.filter.FlashRequestControlFilter</param-value>
+        </init-param>
+    </filter>
+
+    <!-- CF Monitoring Filter mappings
+     When new servlets registered in web.xml, it must be ensured that
+     filter mappings are added for this filter as required.
+     Note that the MessageBrokerServlet for the Flex 2 Gateway is not
+     included here. This is because Flex appears to batch invocations
+     for methods invoked close to one another, resulting in the filter
+     being missed for all batched invocations other than the first.
+    -->
+    <filter-mapping>
+        <filter-name>CFMonitoringFilter</filter-name>
+        <servlet-name>FlashGateway</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CFMonitoringFilter</filter-name>
+        <servlet-name>CFFormGateway</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CFMonitoringFilter</filter-name>
+        <servlet-name>CfmServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CFMonitoringFilter</filter-name>
+        <servlet-name>CFCServlet</servlet-name>
+    </filter-mapping>
+    <!-- End CF Monitoring Filter mappings -->
+
+    <!-- Request Control Filter for Flash Remoting servlets -->
+    <filter-mapping>
+        <filter-name>FlashRemotingControlFilter</filter-name>
+        <servlet-name>MessageBrokerServlet</servlet-name>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>FlashRemotingControlFilter</filter-name>
+        <servlet-name>FlashGateway</servlet-name>
+    </filter-mapping>
+    <!-- end request control filters -->
+
+    <!-- Cache Filter for cfform swfs -->
+    <filter-mapping>
+        <filter-name>CFCacheFilter</filter-name>
+        <servlet-name>CFSwfServlet</servlet-name>
+    </filter-mapping>
+
+    <!-- start flex2
+    <listener>
+        <listener-class>coldfusion.bootstrap.HttpFlexSessionBootstrap</listener-class>
+    </listener>
+    end flex2 -->
+
+    <!-- Message Broker Servlet, wrapped in a ColdFusion specific class -->
+    <servlet>
+        <servlet-name>MessageBrokerServlet</servlet-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.flex.ColdFusionMessageBrokerServlet</param-value>
+        </init-param>
+        <init-param>
+            <param-name>services.configuration.file</param-name>
+            <param-value>/WEB-INF/flex/services-config.xml</param-value>
+        </init-param>
+        <load-on-startup>11</load-on-startup>
+    </servlet>
+
+    <!-- start flex2
+    <servlet>
+        <servlet-name>FlexMxmlServlet</servlet-name>
+        <display-name>MXML Processor</display-name>
+        <description>Servlet wrapper for the Mxml Compiler</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>flex.webtier.server.j2ee.MxmlServlet</param-value>
+        </init-param>
+        <init-param>
+            <param-name>webtier.configuration.file</param-name>
+            <param-value>/WEB-INF/flex/flex-webtier-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>mxml.swf.extension</param-name>
+            <param-value>false</param-value>
+        </init-param>
+       <load-on-startup>12</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FlexInternalServlet</servlet-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>flex.webtier.server.j2ee.filemanager.FileManagerServlet</param-value>
+        </init-param>
+        <load-on-startup>13</load-on-startup>
+    </servlet>
+    end flex2 -->
+
+    <!-- start flash forms settings -->
+    <servlet>
+        <servlet-name>CFInternalServlet</servlet-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>flex.server.j2ee.filemanager.FileManagerServlet</param-value>
+        </init-param>
+        <load-on-startup>13</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CFSwfServlet</servlet-name>
+        <display-name>SWF Retreiver</display-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>flex.server.j2ee.SwfServlet</param-value>
+        </init-param>
+        <load-on-startup>5</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CFMxmlServlet</servlet-name>
+        <display-name>MXML Processor</display-name>
+        <description>Servlet wrapper for the Mxml Compiler</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>flex.compiler.MxmlServlet</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CFForbiddenServlet</servlet-name>
+        <display-name>Prevents access to *.as files</display-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>flex.server.j2ee.ForbiddenServlet</param-value>
+        </init-param>
+    </servlet>
+    <!-- end flash forms settings -->
+
+    <servlet id="coldfusion_servlet_1">
+        <servlet-name>ColdFusionStartUpServlet</servlet-name>
+        <display-name>Coldfusion MX Startup Servlet</display-name>
+        <description>Initializes ColdFusion</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParam_1034013110641">
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.server.j2ee.CFStartUpServlet</param-value>
+        </init-param>
+        <init-param id="InitParam_1034013110642">
+            <param-name>cfRootDir</param-name>
+            <param-value>./WEB-INF/cfusion</param-value>
+        </init-param>
+        <init-param id="InitParam_1034013110643">
+            <param-name>appServer</param-name>
+            <param-value>J2EE</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet id="coldfusion_servlet_11">
+        <servlet-name>FlashGateway</servlet-name>
+        <display-name>Flash Gateway</display-name>
+        <description>Allows flash to connect to CFML and CFC templates.</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParamdca">
+            <param-name>DISABLE_CFWS_ADAPTERS</param-name>
+            <param-value>false</param-value>
+            <description>When set to true, this setting disables the ColdFusion WebServices Adapters in the
+                gateway.</description>
+        </init-param>
+        <init-param>
+            <param-name>DISABLE_SERVER_AUTHENTICATION</param-name>
+            <param-value>false</param-value>
+            <description>When set to true, this setting disables the server authentication of users.</description>
+        </init-param>
+        <init-param id="InitParam_103401311064890">
+            <param-name>servlet.class</param-name>
+            <param-value>flashgateway.controller.GatewayServlet</param-value>
+        </init-param>
+        <init-param id="InitParam_1034013110642x">
+            <param-name>cfRootDir</param-name>
+            <param-value>./WEB-INF/cfusion</param-value>
+        </init-param>
+        <init-param>
+            <param-name>gateway.configuration.file</param-name>
+            <param-value>/WEB-INF/gateway-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>whitelist.configuration.file</param-name>
+            <param-value>/WEB-INF/gateway-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>whitelist.parent.node</param-name>
+            <param-value>gateway-config</param-value>
+        </init-param>
+        <init-param id="InitParam_1034013110643a">
+            <param-name>appServer</param-name>
+            <param-value>J2EE</param-value>
+        </init-param>
+        <load-on-startup>11</load-on-startup>
+    </servlet>
+    <servlet id="coldfusion_servlet_12">
+        <servlet-name>CFFormGateway</servlet-name>
+        <display-name>CFFormGateway</display-name>
+        <description>Allows flash forms to connect to CFML and CFC templates.</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParam_103401311064891">
+            <param-name>servlet.class</param-name>
+            <param-value>flashgateway.controller.GatewayServlet</param-value>
+        </init-param>
+        <init-param id="InitParam_1034013110642y">
+            <param-name>cfRootDir</param-name>
+            <param-value>./WEB-INF/cfusion</param-value>
+        </init-param>
+        <init-param>
+            <param-name>gateway.configuration.file</param-name>
+            <param-value>/WEB-INF/cfform-gateway-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>whitelist.configuration.file</param-name>
+            <param-value>/WEB-INF/cfform-gateway-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>whitelist.parent.node</param-name>
+            <param-value>gateway-config</param-value>
+        </init-param>
+        <init-param id="InitParam_1034013110643b">
+            <param-name>appServer</param-name>
+            <param-value>J2EE</param-value>
+        </init-param>
+        <load-on-startup>12</load-on-startup>
+    </servlet>
+
+
+    <servlet id="coldfusion_servlet_3">
+        <servlet-name>CfmServlet</servlet-name>
+        <display-name>CFML Template Processor</display-name>
+        <description>Compiles and executes CFML pages and tags</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParam_1034013110656ert">
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.CfmServlet</param-value>
+        </init-param>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+    <servlet id="coldfusion_servlet_4">
+        <servlet-name>GraphServlet</servlet-name>
+        <display-name>GraphServlet</display-name>
+        <description>Serves up graph data</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParam_1034013110657xx">
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.graph.GraphServlet</param-value>
+        </init-param>
+    </servlet>
+    <servlet id="coldfusion_servlet_5">
+        <servlet-name>CFCServlet</servlet-name>
+        <display-name>CFC Processor</display-name>
+        <description>Compiles and executes CF web components</description>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParam_1034013110657ax">
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.xml.rpc.CFCServlet</param-value>
+        </init-param>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
+
+    <!-- begin RDS
+    <servlet id="coldfusion_servlet_8789">
+        <servlet-name>RDSServlet</servlet-name>
+        <display-name>RDS Servlet</display-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param id="InitParam_103401311065856789">
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.rds.RdsFrontEndServlet</param-value>
+        </init-param>
+    </servlet>
+    end RDS -->
+
+    <servlet>
+        <servlet-name>CFFileServlet</servlet-name>
+        <display-name>Serves files for cfpresentation,cfreport,captcha etc</display-name>
+        <servlet-class>coldfusion.bootstrap.BootstrapServlet</servlet-class>
+        <init-param>
+            <param-name>servlet.class</param-name>
+            <param-value>coldfusion.util.CFFileServlet</param-value>
+        </init-param>
+    </servlet>
+
+        <!-- Flash Remoting/Flex mapping -->
+    <servlet-mapping id="coldfusion_mapping_0">
+        <servlet-name>MessageBrokerServlet</servlet-name>
+        <url-pattern>/flex2gateway/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- start flex2
+    <servlet-mapping>
+        <servlet-name>FlexMxmlServlet</servlet-name>
+        <url-pattern>*.mxml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FlexInternalServlet</servlet-name>
+        <url-pattern>/flex-internal/*</url-pattern>
+    </servlet-mapping>    
+    end flex2 -->
+
+    <servlet-mapping id="coldfusion_mapping_1">
+        <servlet-name>FlashGateway</servlet-name>
+        <url-pattern>/flashservices/gateway/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_2">
+        <servlet-name>GraphServlet</servlet-name>
+        <url-pattern>/CFIDE/GraphData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_3">
+        <servlet-name>CfmServlet</servlet-name>
+        <url-pattern>*.cfm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_4">
+        <servlet-name>CFCServlet</servlet-name>
+        <url-pattern>*.cfc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_5">
+        <servlet-name>CfmServlet</servlet-name>
+        <url-pattern>*.cfml</url-pattern>
+    </servlet-mapping>
+    <!--
+    If your J2EE server supports it, you can uncomment these.
+    They are included to support Search Engine Safe (SES) URL types.
+    Some servers (Tomcat, SunONE) don't support wildcard mappings
+    -->
+    <!-- begin SES -->
+  <servlet-mapping id="coldfusion_mapping_6">
+     <servlet-name>CfmServlet</servlet-name>
+     <url-pattern>*.cfml/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping id="coldfusion_mapping_7">
+    <servlet-name>CfmServlet</servlet-name>
+    <url-pattern>*.cfm/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping id="coldfusion_mapping_8">
+    <servlet-name>CFCServlet</servlet-name>
+    <url-pattern>*.cfc/*</url-pattern>
+  </servlet-mapping>
+  <!-- end SES -->
+    <!-- begin RDS
+    <servlet-mapping id="coldfusion_mapping_9">
+        <servlet-name>RDSServlet</servlet-name>
+        <url-pattern>/CFIDE/main/ide.cfm</url-pattern>
+    </servlet-mapping>
+    end RDS -->
+    <servlet-mapping id="coldfusion_mapping_10">
+        <servlet-name>CFCServlet</servlet-name>
+        <url-pattern>*.jws</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_11">
+        <servlet-name>GraphServlet</servlet-name>
+        <url-pattern>/CFIDE/GraphData.cfm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_12">
+        <servlet-name>CFCServlet</servlet-name>
+        <url-pattern>*.cfr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_13">
+        <servlet-name>CFFormGateway</servlet-name>
+        <url-pattern>/CFFormGateway/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping id="coldfusion_mapping_14">
+        <servlet-name>CFFileServlet</servlet-name>
+        <url-pattern>/CFFileServlet/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- start flash form settings -->
+    <servlet-mapping>
+        <servlet-name>CFInternalServlet</servlet-name>
+        <url-pattern>/cfform-internal/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CFSwfServlet</servlet-name>
+        <url-pattern>*.cfswf</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CFForbiddenServlet</servlet-name>
+        <url-pattern>*.as</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CFForbiddenServlet</servlet-name>
+        <url-pattern>*.sws</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CFForbiddenServlet</servlet-name>
+        <url-pattern>*.swc</url-pattern>
+    </servlet-mapping>
+    <!-- end flash form settings -->
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <welcome-file-list id="WelcomeFileList_1034013110672">
+        <welcome-file>index.cfm</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+    </welcome-file-list>
+
+    <!-- start flex2
+    <taglib>
+        <taglib-uri>FlexTagLib</taglib-uri>
+        <taglib-location>/WEB-INF/lib/cf-bootstrap-for-flex.jar</taglib-location>
+    </taglib>
+    end flex2 -->
+
+    <!-- for WebSphere deployment, please uncomment -->
+    <!-- Start WebSphere deploy
+    <resource-ref>
+        <description>Flex Messaging WorkManager</description>
+        <res-ref-name>wm/MessagingWorkManager</res-ref-name>
+        <res-type>com.ibm.websphere.asynchbeans.WorkManager</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+    End WebSphere deploy -->
+
+</web-app>

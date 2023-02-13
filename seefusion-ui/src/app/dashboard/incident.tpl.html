@@ -1,0 +1,79 @@
+<div ng-hide="incident" class="alert relative alert-info" role="alert">
+  No data to show for this incident..
+</div>
+
+<div ng-show="incident">
+
+<div class="col-sm-2 text-right">Incident Label:</div>
+<div class="col-sm-10">{{incident.incidentType}}</div>
+
+<div class="col-sm-2 text-right">Logged at:</div>
+<div class="col-sm-10">{{incident.beginTime | date: 'MMM dd yyyy h:mm:ss a'}}</div>
+
+<div class="col-sm-2 text-right">Number of Requests:</div>
+<div class="col-sm-10">{{incident.requests.length}}</div>
+
+<div class="row" ng-show="incident.requests">
+	<div class="col-sm-2 text-right">
+		<h4>Logged Requests: </h4>
+	</div> 
+	<div class="col-sm-10">
+		<div ng-repeat="request in incident.requests" class="padded"
+			ng-class-odd="'odd'" ng-class-even="'even'">
+
+			<div class="row" ng-show="request.url">
+				<div class="col-sm-2 text-right">Request URL:</div>
+				<div class="col-sm-10"><a href="{{request.url}}" target="top">{{request.url}}</a></div>
+			</div>
+
+			<div class="row" ng-show="!request.url && request.requestURI">
+				<div class="col-sm-2 text-right">Request URI:</div>
+				<div class="col-sm-10">{{request.requestURI}}</div>
+			</div>
+
+			<div class="row" ng-show="request.method">
+				<div class="col-sm-2 text-right">HTTP Method:</div>
+				<div class="col-sm-10">{{request.method}}</div>
+			</div>
+
+			<div class="row" ng-show="request.threadName">
+				<div class="col-sm-2 text-right">Thread Name:</div>
+				<div class="col-sm-10">{{request.threadName}}</div>
+			</div>
+
+			<div class="row" ng-show="request.time">
+				<div class="col-sm-2 text-right">Execution Time:</div>
+				<div class="col-sm-10">{{request.time}}</div>
+			</div>
+
+			<div class="row" ng-show="request.timeToFirstByte">
+				<div class="col-sm-2 text-right">Time to 1st Byte:</div>
+				<div class="col-sm-10">{{request.timeToFirstByte}}</div>
+			</div>
+
+			<div class="row" ng-show="request.longQueryActive">
+				<div class="col-sm-2 text-right">Longest SQL Query:</div>
+				<div class="col-sm-10">
+				<p>{{toDurationString(request.longQueryElapsed)}}Ms</p>
+				<p>{{request.longQueryRows}} Rows</p>
+				<p style="font-family: monospace;">{{request.longQuerySql}}</p>
+				</div>
+			</div>
+
+			<div class="row" ng-show="request.stack">
+				<div class="col-sm-2 text-right">Stack Trace:</div>
+				<div class="col-sm-10"><pre>{{request.stack}}</pre></div>
+			</div>
+
+			<div class="row" ng-show="request.ip">
+				<div class="col-sm-2 text-right">IP Address:</div>
+				<div class="col-sm-10">{{request.ip}}</div>
+			</div>
+
+			<div class="row" ng-show="request.method">
+				<div class="col-sm-2 text-right">HTTP Method:</div>
+				<div class="col-sm-10">{{request.method}}</div>
+			</div>
+		</div>
+	</div>
+</div>

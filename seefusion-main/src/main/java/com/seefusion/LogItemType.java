@@ -1,0 +1,5 @@
+package com.seefusion;
+
+public enum LogItemType {
+	QUERY,PAGE,COUNTER,INCIDENT,INCIDENT_SERVER,SNAPSHOT,HISTORYMINUTE;
+}

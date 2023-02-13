@@ -1,0 +1,16 @@
+**/target
+
+**/bin
+**/derby.log
+.idea
+*.iml
+**/.settings
+**/build/*
+seefusion-main/src/main/resources/ui
+**/.gradle
+*.jar
+
+*.war
+
+*.tar
+**/node_modules

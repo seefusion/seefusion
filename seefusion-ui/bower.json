@@ -1,0 +1,29 @@
+{
+  "name": "visionast-angular",
+  "version": "0.0.0",
+  "authors": [
+    "Perry Woodin <perry@webapper.net>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.11.0",
+    "angular": "~1.2.20",
+    "bootstrap": "~3.1.1",
+    "angular-ui-router": "~0.2.11",
+    "angular-mocks": "~1.2.19",
+    "checklist-model": "~0.1.3",
+    "AngularJS-Toaster": "~0.4.7",
+    "angular-toggle-switch": "~0.5.5",
+    "d3": "~3.3.6",
+    "nvd3": "~1.1.15-beta",
+    "angularjs-nvd3-directives": "~0.0.7"
+  }
+}

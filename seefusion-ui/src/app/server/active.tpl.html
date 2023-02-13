@@ -1,0 +1,86 @@
+<div class="requestList" ng-hide="lookingRequest.on">
+	<table class="table table-striped table-hover table-condensed results">
+		<thead>
+			<tr>
+				<th ng-click="sortType = 'url'; sortReverse = !sortReverse">
+		            Request 
+		            <span ng-show="sortType == 'url' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'url' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<!-- <th ng-click="sortType = 'completed'; sortReverse = !sortReverse">
+		            Completed 
+		            <span ng-show="sortType == 'completed' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'completed' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th> -->
+				<th ng-click="sortType = 'ip'; sortReverse = !sortReverse">
+		            From IP
+		            <span ng-show="sortType == 'ip' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'ip' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'responseCode'; sortReverse = !sortReverse">
+		            Response
+		            <span ng-show="sortType == 'responseCode' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'responseCode' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'time'; sortReverse = !sortReverse">
+		            Elapsed
+		            <span ng-show="sortType == 'time' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'time' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'queryCount'; sortReverse = !sortReverse">
+		            Queries
+		            <span ng-show="sortType == 'queryCount' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'queryCount' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'queryTime'; sortReverse = !sortReverse">
+		            QryTime
+		            <span ng-show="sortType == 'queryTime' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'queryTime' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'longQueryElapsed'; sortReverse = !sortReverse">
+		            LongQry
+		            <span ng-show="sortType == 'longQueryElapsed' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'longQueryElapsed' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'longQueryRows'; sortReverse = !sortReverse">
+		            Rows
+		            <span ng-show="sortType == 'longQueryRows' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'longQueryRows' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+				<th ng-click="sortType = 'longQuerySql'; sortReverse = !sortReverse">
+		            SQL
+		            <span ng-show="sortType == 'longQuerySql' && !sortReverse" class="caret"></span>
+		            <span ng-show="sortType == 'longQuerySql' && sortReverse" class="dropup"><span class="caret"></span></span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-show="pages.length==0 && !busy">
+				<td colspan="10">No active requests</td>
+			</tr>
+			<tr ng-repeat="page in pages | orderBy:sortType:sortReverse" ng-class="{highlighted:page.pid === detailRequestNumber}">
+				<td>
+					<!-- <button ng-click="getStack(page)" type="button" href="#" onClick="return false;"><img src="images/stack.gif" border=0></button> -->
+					<!-- <button ng-click="kill(page)" ng-show="canKill" type="button" href="#" onClick="return false;"><img src="images/stop.png" border=0></button> -->
+					<button ng-click="getStack(page)" title="View Stack"><span class="glyphicons show_lines blue"></span></button>
+					<button ng-click="kill(page)" ng-if="canKill"  title="Kill Request"><span class="glyphicons stop red"></span></button>
+					<button ng-click="open(page)" ng-if="clickableURLs" title="Open this URL"><span class="glyphicons share green"></span></button>
+					<span ng-click="requestDetails(page)">{{page.url | limitTo : 70}}</span><span ng-show="page.url.length > 70">...</span>
+				</td>
+				<!-- <td ng-click="requestDetails(page)">{{page.completed | date:'short'}}</td> -->
+				<td nowrap>
+					<span ng-show="dosEnabled" class="glyphicons ban" ng-click="addBlock(page.ip)" title="Block {{page.ip}}"></span>
+					<span ng-show="clickableIPURL" class="glyphicons globe" ng-click="open(clickableIPURL + page.ip)" title="IP info"></span>
+					{{page.ip}}
+				</td>
+				<td ng-click="requestDetails(page)">{{page.responseCode}}<span ng-show="page.timeToFirstByte > 0">@{{page.timeToFirstByte}}ms</span></td>
+				<td ng-click="requestDetails(page)">{{page.time}}ms</td>
+				<td ng-click="requestDetails(page)">{{page.queryCount}}</td>
+				<td ng-click="requestDetails(page)">{{page.queryTime}}ms</td>
+				<td ng-click="requestDetails(page)">{{page.longQueryElapsed}}ms</td>
+				<td ng-click="requestDetails(page)">{{page.longQueryRows}}</td>
+				<td><span ng-click="requestDetails(page)">{{page.longQuerySql | limitTo : 70}}</span><span ng-show="page.longQuerySql.length > 70">...</span></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

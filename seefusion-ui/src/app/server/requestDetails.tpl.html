@@ -1,0 +1,64 @@
+<div ng-hide="lookingRequest.info" class="alert relative alert-info" role="alert">
+  No request details available.
+</div>
+
+<div ng-show="lookingRequest.info" class="requestDetail">
+
+<table class="table table-striped table-hover">
+	<tbody>
+		<tr>
+			<td class="listLabel">Request:</td>
+			<td width="90%"><button ng-click="open(lookingRequest.info)"><span class="glyphicons share green"></span></button> {{lookingRequest.info.url}}</td>
+		</tr>
+		<tr>
+			<td class="listLabel">Thread:</td>
+			<td width="90%">{{lookingRequest.info.threadName}} (Req #{{lookingRequest.info.pid}})</td>
+		</tr>
+		<tr>
+			<td class="listLabel">Completed:</td>
+			<td width="90%">{{lookingRequest.info.completed | date:'short'}} ({{lookingRequest.info.completedAgoMs | millSecondsToTimeString}} ago)</td>
+		</tr>
+		<tr>
+			<td class="listLabel" >Source IP:</td>
+			<td width="90%">{{lookingRequest.info.ip}} 
+				<span ng-show="dosEnabled" class="glyphicons ban" ng-click="addBlock(lookingRequest.info.ip)" title="Block {{page.ip}}"></span>
+				<span ng-show="clickableIPURL" class="glyphicons globe" ng-click="open(clickableIPURL + lookingRequest.info.ip)" title="IP info"></span>
+			</td>
+		</tr>
+		<tr>
+			<td class="listLabel" text-right>HTTP Response Code:</td>
+			<td width="90%">{{lookingRequest.info.responseCode}} ({{lookingRequest.info.method}}, HTTP<span ng-if="lookingRequest.info.isSecure">S</span>)</td>
+		</tr>
+		<tr>
+			<td class="listLabel">Time to First Byte:</td>
+			<td width="90%"><span ng-if="lookingRequest.info.timeToFirstByte">{{lookingRequest.info.timeToFirstByte}} ms</span></td>
+		</tr>
+		<tr>
+			<td class="listLabel">Total Time:</td>
+			<td width="90%">{{lookingRequest.info.time}} ms</td>
+		</tr>
+		<tr ng-show="lookingRequest.info.trace">
+			<td class="listLabel">Trace:</td>
+			<td width="90%">{{lookingRequest.info.trace}}</td>
+		</tr>
+		<tr>
+			<td class="listLabel">Completed Queries:</td>
+			<td width="90%">
+				<span ng-show="lookingRequest.info.queryCount">{{lookingRequest.info.queryCount}} ({{lookingRequest.info.queryTime}} ms)</span>
+				<span ng-hide="lookingRequest.info.queryCount">No Queries Logged</span>
+			</td>
+		</tr>
+		<tr ng-show="lookingRequest.info.queryCount">
+			<td class="listLabel">Long Query:</td>
+			<td width="90%">
+				<p ng-show="lookingRequest.info.longQueryActive">STILL ACTIVE</p>
+				{{lookingRequest.info.longQueryElapsed}} ms,  {{lookingRequest.info.longQueryRows}} rows
+				<span ng-show="lookingRequest.info.longQueryActive">(so far)</span>
+				<span ng-show="lookingRequest.info.longQuerySql">:</span>
+				<div ng-show="lookingRequest.info.longQuerySql">
+					<pre>{{lookingRequest.info.longQuerySql}}</pre>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

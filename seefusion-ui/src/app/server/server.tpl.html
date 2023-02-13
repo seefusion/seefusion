@@ -1,0 +1,84 @@
+<div class="content">
+	<div>
+		<ul class="nav nav-tabs">
+		  <li ng-class="{active:$state.includes('server.active') && !lookingRequest.on}"><a ui-sref="server.active" ng-click="closeDetail()">Active Requests</a></li>
+		  <li ng-class="{active:$state.includes('server.recent') && !lookingRequest.on}"><a ui-sref="server.recent" ng-click="closeDetail()">Recent Requests</a></li>
+		  <li ng-class="{active:$state.includes('server.slow') && !lookingRequest.on}"><a ui-sref="server.slow" ng-click="closeDetail()">Slow Requests</a></li>
+		  <li ng-show="lookingRequest.on" ng-class="{active:lookingRequest.on}"><a name="details">Request Details <span class="glyphicons remove leftMargin" ng-click="closeDetail();"></span></a></li>
+		</ul>
+		<!-- <div ng-show="ititialLoading" class="alert relative alert-info"><img src="/img/spinner.gif"> Loading Request Data...</div> -->
+		<div class="push-down" ui-view></div> 
+	</div>
+</div>
+
+<div class="push-down" ng-hide="lookingRequest.on">
+
+	<div id="pagesChart" class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading" ng-click="expandChart('pages','Pages')">
+				<div class="pull-right glyphicons resize_full"></div>
+				<h3 class="panel-title">Pages</h3>
+			</div>
+			<div class="panel-body chart">
+				<div ng-if="charts.pages.length">
+					<nvd3-line-chart
+					id="chartPages"
+					data="charts.pages"
+					showXAxis="true"
+					showYAxis="true"
+					tooltips="true"
+					interactive="true"
+					showLegend="true"
+					xAxisTickFormat="chartDateFormat()">
+					</nvd3-line-chart>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="queriesChart" class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading" ng-click="expandChart('queries','Queries')">
+				<div class="pull-right glyphicons resize_full"></div>
+				<h3 class="panel-title">Queries</h3>
+			</div>
+			<div class="panel-body chart">
+				<div ng-if="charts.queries.length">
+					<nvd3-line-chart
+					id="chartQueries"
+					data="charts.queries"
+					showXAxis="true"
+					showYAxis="true"
+					tooltips="true"
+					interactive="true"
+					showLegend="true"
+					xAxisTickFormat="chartDateFormat()">
+					</nvd3-line-chart>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="memoryChart" class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading" ng-click="expandChart('memory','Memory')">
+				<div class="pull-right glyphicons resize_full"></div>
+				<h3 class="panel-title">Memory</h3>
+			</div>
+			<div class="panel-body chart">
+				<div ng-if="charts.memory.length">
+					<nvd3-line-chart
+					id="chartMemory"
+					data="charts.memory"
+					showXAxis="true"
+					showYAxis="true"
+					tooltips="true"
+					interactive="true"
+					showLegend="true"
+					xAxisTickFormat="chartDateFormat()">
+					</nvd3-line-chart>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="push-down" ng-show="lookingRequest.on" ng-include="'server/requestDetails.tpl.html'"></div>

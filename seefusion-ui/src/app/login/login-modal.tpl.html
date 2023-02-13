@@ -1,0 +1,22 @@
+<div class="modal-header">
+	<h3 class="modal-title">Login</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="form" novalidate ng-submit="login()">
+
+		<div class="form-group has-feedback" ng-class="{'has-error':form.password.$invalid && form.password.$dirty, 'has-success':form.password.$valid}">
+			<label for="password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-4">
+				<input id="loginpassword" type="password" class="form-control" name="password" placeholder="Password" required ng-model="password">
+				<span class="glyphicons ok form-control-feedback"></span>
+			</div>
+		</div>
+
+	<form>
+
+</div>
+<div class="modal-footer">
+	<button ng-disabled="form.$invalid" type="submit" class="btn btn-primary" ng-click="login()"><span class="glyphicons white check"></span>Login</button>
+	<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+</div>

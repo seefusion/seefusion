@@ -1,0 +1,290 @@
+[
+	{
+		"title": "General",
+		"items": [
+			{
+				"help": "Turns the request monitoring filter on or off.  When off, all page information, logging events, and counters will be lost, but hourly licensing (if applicable) will continue. Note that this does not completely disable the database driver wrapper, as it would be impossible, when SeeFusion is switched back On, to retroactively wrap pooled connections and statements.  (Default: On)",
+				"description": "Enable or Disable SeeFusion. (Default: On)",
+				"configitem": "enabled",
+				"type": "booleantrue"
+			},
+			{
+				"help": "This is the display name for the server, and the name that will be entered in the database column \"FilterName\", if you have database logging enabled.  Use the value \"{hostname}\" (without quotes) to have SeeFusion use the local machine hostname; you can also use \"{filterName}\" (again, no quotes) to have SeeFusion use the name of the servlet filter (which, by default, is \"SeeFusion\").  These parameters can be used in combination, for example: \"Server {hostname}:{filterName}\".  (Note the value of {filtername} value will always be \"ejb\" when SeeFusion is used as an ejb interceptor.)",
+				"description": "Name of this server.",
+				"configitem": "name",
+				"type": "text"
+			},
+			{
+				"help": "This sets the expected maximum number of requests for this server (this value is only used to set graph maximums.)",
+				"description": "Max Simultaneous Requests expected.",
+				"configitem": "maxRequests",
+				"type": "integer"
+			},
+			{
+				"help": "This controls the link to this SeeFusion instance in the Dashboard.  By default, \"http://{name}:8999/\" is used.",
+				"description": "URL to this instance of SeeFusion.",
+				"configitem": "browserURL",
+				"type": "text"
+			},
+			{
+				"help": "A list of IP:port entries that SeeFusion should listen on (i.e., bind to) for accepting browser requests.  Default is \"all:8999\".",
+				"description": "Controls where SeeFusion is \"listening\".",
+				"configitem": "listeners",
+				"type": "text"
+			},
+			{
+				"help": "A space-delimited list of JDBC drivers to preload, if they're used by your application.  Example: \"oracle.jdbc.driver.OracleDriver com.informix.jdbc.IfxDriver\"\r\n\r\nIf you don't specify driver names here, you'll have to add \";driver=<i>{driver.class.name}</i>\" to the end of every SeeFusion-wrapped JDBC URL. ",
+				"description": "List of JDBC drivers to load at SeeFusion startup.",
+				"configitem": "jdbcDrivers",
+				"type": "text"
+			},
+			{
+				"help": "If an Active Monitoring Rule needs to send email, it'll use this server.",
+				"description": "The name of the SMTP smart relay server used for sending email",
+				"configitem": "smtpServer",
+				"type": "text"
+			},
+			{
+				"help": "If your SMTP server requires authentication, use this username",
+				"description": "Username for SMTP authentication",
+				"configitem": "smtpUsername",
+				"type": "text"
+			},
+			{
+				"help": "If your SMTP server requires authentication, use this password",
+				"description": "Password for SMTP authentication",
+				"configitem": "smtpPassword",
+				"type": "password"
+			}
+		]
+	},
+	{
+		"title": "Security",
+		"items": [
+			{
+				"help": "If set, SeeFusion will require any browser to authenticate to this password before allowing them to configure SeeFusion via the \"/config\" page.  Users with this password can also see status pages, debug output, and can Kill requests.",
+				"description": "Password to be able to configure SeeFusion.",
+				"configitem": "httpConfigPassword",
+				"type": "password"
+			},
+			{
+				"help": "If set, SeeFusion will require any browser to authenticate to this password before allowing requests to be killed.  Users with this password can also see status pages and debug output.<BR><BR><font color=red>NOTE:</font> If you set the httpKillPassword before setting a <a href=\"/config?option=httpConfigPassword\">httpConfigPassword</a>, you will not be able to access the Configuration interface until you manually set the httpConfigPassword in the seefusion.properties file.",
+				"description": "Password to be able to kill requests.",
+				"configitem": "httpKillPassword",
+				"type": "password"
+			},
+			{
+				"help": "If set, SeeFusion will require any browser to authenticate before showing SeeFusion status pages or debug output.<BR><BR><font color=red>NOTE:</font> If you set the httpPassword before setting a <a href=\"/config?option=httpConfigPassword\">httpConfigPassword</a>, you will not be able to access the Configuration interface until you manually set the httpConfigPassword in the seefusion.properties file.",
+				"description": "Password to view SeeFusion (Read-Only).",
+				"configitem": "httpPassword",
+				"type": "password"
+			},
+			{
+				"help": "A list of subnets allowed to use SeeFusion.  Browsers on the list will still be prompted for authentication, if applicable; if not on the list, access will be flatly refused.  For example, to allow \"unroutable\" subnets to see SeeFusion, the list might be \"10. 172.16. 192.168.\"  The default is blank (disabled).",
+				"description": "List of subnets allowed to use SeeFusion.",
+				"configitem": "ipWhitelist",
+				"type": "longtext"
+			}
+		]
+	},
+	{
+		"title": "Display",
+		"items": [
+			{
+				"help": "Number of recent requests to show on the server status page.  (The Active requests list does not have a configurable size because it always shows all active requests.)",
+				"description": "Number of recent requests shown.",
+				"configitem": "historySize",
+				"type": "integer"
+			},
+			{
+				"help": "Number of slow requests to show on the server status page.",
+				"description": "Number of slow requests shown.",
+				"configitem": "slowHistorySize",
+				"type": "integer"
+			},
+			{
+				"help": "Theshold (in milliseconds) when pages are considered Slow.  One second is 1000ms.  The default is 8000.",
+				"description": "Theshold (in ms) when pages are considered Slow.",
+				"configitem": "slowPageThreshold",
+				"type": "integer"
+			},
+			{
+				"help": "Theshold (in milliseconds) when queries are considered Slow.  One second is 1000ms.  The default is 1000.",
+				"description": "Theshold (in ms) when queries are considered Slow.",
+				"configitem": "slowQueryThreshold",
+				"type": "integer"
+			},
+			{
+				"help": "Space delimited list of filenames or file extensions to <i>never</i> show in the \"Recent Requests\" nor \"Slow Requests\" lists.  This affects both the HTML and XML data, but does not affect the \"Running Requests\" list nor the database logging of long-running requests (if enabled).  Default is blank (all requests appear in the Recent and Slow lists as applicable).",
+				"description": "Filenames or extensions to never show in the history.",
+				"configitem": "historyIgnoreSuffixList",
+				"type": "text"
+			},
+			{
+				"help": "Set to \"On\" to see relative times, \"Off\" to see absolute date/time stamps (using the time at the SeeFusion server).  Default is \"On\".  This only applies to the \"Completed\" column of display pages; XML views are unaffected.",
+				"description": "Selects absolute or relative time display on the SeeFusion server information page.",
+				"configitem": "displayRelativeTimes",
+				"type": "boolean"
+			},
+			{
+				"help": "When enabled, requests are clickable links ( http://{server}{uri} ) in SeeFusion.  Default is \"Off\" (not clickable).",
+				"description": "Selects whether request names should be links.",
+				"configitem": "clickableURLs",
+				"type": "boolean"
+			},
+			{
+				"help": "When this has a value, \"From\" IP Addresses become clickable links in SeeFusion.  Example: http://whatismyipaddress.com/ip/ ",
+				"description": "URL to prepend to \"From\" IP (makes IP addresses clickable for lookup purposes).",
+				"configitem": "clickableIPURL",
+				"type": "text"
+			},
+			{
+				"help": "If you maintain Java code in your organization, specifying any package(s) of that code will allow the SeeStack to identify your code when processing Profiles.",
+				"description": "Package names for locally-maintained Java code.",
+				"configitem": "localPackages",
+				"type": "text"
+			},
+			{
+				"help": "If your load balancer acts as a reverse proxy (instead of a transparent proxy), it will usually add an HTTP header to the request indicating the original IP of the request.  In that case, typical value here is \"X-Forwarded-For\"",
+				"description": "Load balancer header indicating the \"real\" IP of the remote user",
+				"configitem": "forwardedForHeader",
+				"type": "text"
+			},
+			{
+				"help": "Each reverse proxy will add an IP address to X-Forwarded-For.  This should be set to the number of proxies doing so.  (Typically just one.)",
+				"description": "Number of load balancers or proxies using X-Forwarded-For",
+				"configitem": "forwardedForPosition",
+				"type": "integer"
+			}
+		]
+	},
+	{
+		"title": "Database Logging",
+		"items": [
+			{
+				"help": "Class name of driver.  For example, if you were using the JTDS driver, you'd enter \"net.sourceforge.jtds.jdbc.Driver\".  This should never be \"com.seefusion.Driver\".",
+				"description": "Driver Class of database driver.",
+				"configitem": "dbDriver",
+				"type": "dbdriver"
+			},
+			{
+				"help": "Full JDBC URL of the connection used for database logging.  Do NOT wrap this URL with jdbc:seefusion:{}.",
+				"description": "JDBC URL for database logging.",
+				"configitem": "dbJdbcUrl",
+				"type": "longtext"
+			},
+			{
+				"help": "Database Username.",
+				"description": "Database Username.",
+				"configitem": "dbUserName",
+				"type": "text"
+			},
+			{
+				"help": "Database Password.",
+				"description": "Database Password.",
+				"configitem": "dbPassword",
+				"type": "password"
+			},
+			{
+				"help": "Theshold (in milliseconds) when pages are considered Slow.  One second is 1000ms.  The default is blank, which uses the SlowPageThreshold.",
+				"description": "Theshold (in ms) at which pages are logged.",
+				"configitem": "dbLogThreshold",
+				"type": "integer"
+			},
+			{
+				"help": "Theshold (in milliseconds) when queries are considered Slow.  One second is 1000ms.  The default is blank, which disables query logging.",
+				"description": "Theshold (in ms) at which queries are logged.",
+				"configitem": "dbLogQueryThreshold",
+				"type": "integer"
+			},
+			{
+				"help": "When enabled, will cause all queries with exceptions to be logged.  Default is Off.",
+				"description": "When enabled, will cause all queries with exceptions to be logged.",
+				"configitem": "dbLogQueryExceptions",
+				"type": "boolean"
+			},
+			{
+				"help": "Interval (in seconds) that counters are logged to the Counters table.  Default is blank (disabled.)",
+				"description": "Interval (in seconds) that counters are logged to the Counters table.",
+				"configitem": "dbLogCountersInterval",
+				"type": "integer"
+			},
+			{
+				"help": "Set to \"on\" to enable logging, \"off\" to disable logging.",
+				"description": "Enables logging to a database.",
+				"configitem": "dbLoggerEnabled",
+				"type": "boolean"
+			}
+		]
+	},
+	{
+		"title": "Cloudwatch",
+		"items": [
+			{
+				"help": "If not using machine roles for authentication, this is the AWS Access Key used for auth.  Note that this is stored in plain text.  If using machine roles for auth, leave this blank.",
+				"description": "AWS Access Key for CloudWatch",
+				"configitem": "awsAccessKey",
+				"type": "text"
+			},
+			{
+				"help": "If not using machine roles for authentication, this is the AWS Secret Key used for auth.  Note that this is stored in plain text.",
+				"description": "AWS Secret Key for CloudWatch",
+				"configitem": "awsSecretKey",
+				"type": "text"
+			},
+			{
+				"help": "The AWS namespace to use for Cloudwatch reporting.  Default is \"com.seefusion\"",
+				"description": "AWS CloudWatch namespace",
+				"configitem": "awsNamespace",
+				"type": "text"
+			},
+			{
+				"help": "Enables reporting of \"counter\" metrics to CloudWatch.  Requires \"aws-java-sdk\" libs alongside SeeFusion5.jar (lib and third-party/lib).",
+				"description": "Enable CloudWatch Monitoring",
+				"configitem": "cloudwatchEnabled",
+				"type": "booleanfalse"
+			}
+		]
+	},
+	{
+		"title": "Debug Output",
+		"items": [
+			{
+				"help": "Enables or disables IP-based debugging.  Default is \"On\"; when \"Off\", debug output can still be gathered using the Debug tab on the SeeFusion console.",
+				"description": "Enables or disables IP-based debugging.",
+				"configitem": "debugEnabled",
+				"type": "booleantrue"
+			},
+			{
+				"help": "List of IP addresses of browsers who should get debug output for every page view.  If blank (the default), no browsers will automatically get debug output.  Set to \"all\" to enable global debug output.",
+				"description": "Debug IP address list.",
+				"configitem": "debugIPs",
+				"type": "text"
+			},
+			{
+				"help": "Used to control which stack trace entries are shown for profiles.  Every line in the stack is compared against every substring in this list; if there's a match, that stack line will be displayed in debug output.  ColdFusion applications will typically use \".cfm .cfc\", Java application will use the package name of the app, as in \"com.mycompany.myapplication\".  If blank, stack tracing is disabled.  To see all stack entries, use \".\"",
+				"description": "Debug stack trace targets.",
+				"configitem": "debugStackTargets",
+				"type": "text"
+			},
+			{
+				"help": "A space delimited list of page names or extensions that should get debug output appended, even if they don't have a content type of \"text/html\".  Normally, debug output will <i>only</i> be appended to pages that specify a content-type of \"text/html\".",
+				"description": "Append debug output to these non-html pages.",
+				"configitem": "debugSuffixList",
+				"type": "text"
+			},
+			{
+				"help": "A space delimited list of page names or extensions that should <i>never</i> get debug output appended, even if they do have a content type of \"text/html\".",
+				"description": "Never append debug output to these pages.",
+				"configitem": "debugNeverSuffixList",
+				"type": "boolean"
+			},
+			{
+				"help": "When \"On\", SeeFusion will log (to stdout) why it did (or did not) generate Debug output for every eligible page.",
+				"description": "Debug when/why debug output is generated.",
+				"configitem": "debugDebug",
+				"type": "boolean"
+			}
+		]
+	}
+]

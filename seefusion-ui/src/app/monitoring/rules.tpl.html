@@ -1,0 +1,40 @@
+<table class="table table-striped table-hover table-condensed results">
+	<tr>
+		<th>
+			<span class="glyphicons heart" style="visibility: hidden;"></span>
+			Name
+		</th>
+		<th>Type</th>
+		<th>Threshold</th>
+		<th>Logs</th>
+		<th>Kills</th>
+		<th>Notifies</th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="rule in rules">
+		<td ng-class="{disabled: !rule.isEnabled}" ng-click="editRule(rule)">
+			<span class="glyphicons circle_ok green" style="color:green;" ng-show = "rule.isEnabled"></span>
+			<span class="glyphicons circle_exclamation_mark red" style="color:red;" ng-hide = "rule.isEnabled"></span>
+			{{rule.name}}
+		</td>
+		<td>{{rule.triggerTypeString}}</td>
+		<td>{{rule.triggerLimit}}
+		<span ng-switch on="rule.triggerType">
+		  <span ng-switch-when="ACTIVEREQ"> </span>
+		  <span ng-switch-when=""> </span>
+		  <span ng-switch-when="MEMORYPCT">%</span>
+		  <span ng-switch-default>Ms</span>
+		</span>	
+		</td>
+		<td>{{rule.isLogResponse}}</td>
+		<td>{{rule.isKillResponse}}</td>
+		<td>{{rule.isNotifyResponse}}</td>
+		<td>
+			<span class="glyphbutton glyphicons remove" ng-click="removeRule(rule)" title="Delete this rule"></span>
+		</td>
+	</tr>
+	<tr ng-show="rules.length==0">
+		<td colspan="10">No rules defined.</td>
+	</tr>
+</table>
+<button ng-click="newRule()" class="btn btn-primary" type="button">New Rule</button>

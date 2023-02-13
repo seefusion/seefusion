@@ -1,0 +1,26 @@
+<div class="container-fluid">
+	<div class="row data-widgets" style="margin-top:5px;">
+		<div class="col-sm-12 col-md-4 col-lg-4" ng-if="isAuthenticated">
+			<sf-metric-widget metrics="serverMetrics" showcontrols="true" title="serverNameTitle" gc="gc()" refresh="refresh()" setPodRefresh="setpodrefresh(sec)" 
+			refreshTime="podtimeout"></sf-metric-widget>
+		</div>
+		<div class="col-sm-12 col-md-4 col-lg-4" ng-if="isAuthenticated">
+			<sf-metric-widget metrics="requestMetrics" title="'Requests'"></sf-metric-widget>
+		</div>
+		<div class="col-sm-12 col-md-4 col-lg-4" ng-if="isAuthenticated">
+			<sf-metric-widget metrics="queryMetrics" title="'Queries'"></sf-metric-widget>
+		</div>
+		<!-- <div class="hidden-xs hidden-sm hidden-md hidden-lg text-muted" ng-if="isAuthenticated">
+			<span ng-show="hasPendingRequests()" class="glyphicons heart"></span>
+			<span ng-hide="hasPendingRequests()" class="glyphicons heart_empty"></span>
+		</div> -->
+	</div>
+</div>
+
+<div class="breadcrumb" style="position:relative;">{{breadcrumb}} <img src="SeeFusion.png" class="logo" border="0" style="position:absolute;right:0px;top:0px;"/></div>
+
+<!-- <button type="btn" ng-show="!showNav" ng-click="toggleNav()"><span class="glyphicons resize_full"></span> Show Menu</button> -->
+
+<div class="push-down">
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert(alert)">{{ alert.msg }}</alert>
+</div>

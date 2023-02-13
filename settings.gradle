@@ -1,0 +1,9 @@
+rootProject.name = 'seefusion'
+include(':seestack')
+include(':seefusion-util')
+include(':seefusion-tomcat7Helper')
+include(':seefusion-tomcat8Helper')
+include(':seefusion-installer')
+include(':seefusion-main')
+include(':seefusion-assembly')
+include(':seefusion-awsHelper')

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en" ng-app="app">
+<head>
+	<title>SeeFusion 5</title>
+	<link rel="stylesheet" type="text/css" href="<%= grunt.config.get('pkg.name') %>.min.css"/>
+	<!-- Custom css rules can be placed in author.css -->
+	<link rel="stylesheet" type="text/css" href="<%= grunt.config.get('pkg.name') %>-author.min.css"/>
+	<link rel="stylesheet" href="nv.d3.min.css"/>
+	<link rel="stylesheet" href="angular-toggle-switch.css"/>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="<%= grunt.config.get('pkg.name') %>.js"></script>
+</head>
+
+<body ng-controller="AppCtrl">
+	<div id="container" ng-if="!$root.problem">
+		<!--<div id="sidebar" ng-include="'sidebar.tpl.html'"></div>-->
+		<div id="sidebar" ng-include="'nav.tpl.html'" ng-show="showNav"></div>
+		<div id="meat" class="col-xs-12"> 
+			<div ng-include="'header.tpl.html'"></div>
+			<div ui-view ng-if="isAuthenticated"></div>
+			<button id="expandButton" ng-show="!showNav" ng-click="toggleNav()" class="btn btn-danger" type="button"><span class="glyphicons resize_full"></span></button>
+		</div>
+	</div>
+
+	<div id="container" ng-if="$root.problem">
+		<div class="col-xs-1 col-lg-2"></div>
+		<div id="meat" class="col-xs-10 col-lg-8">
+			<div ng-include="'problemHeader.tpl.html'"></div>
+			<div ui-view></div>
+		</div>
+		<div class="col-xs-1 col-lg-2"></div>
+	</div>
+</body>   
+</html>

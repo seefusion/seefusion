@@ -1,0 +1,17 @@
+<div class="seethread" ng-repeat="thread in seestack.threads">
+	<div>
+		<abbr ng-show="thread.ref" class="threadName {{thread.importance}}" title="{{seestack.infos[thread.ref].description}}">Thread "{{thread.name}}"</abbr>
+		<span ng-hide="thread.ref" class="threadName {{thread.importance}}">Thread "{{thread.name}}"</span>
+	</div>
+	<div ng-repeat="method in thread.methods" class="method">
+		<span ng-show="method.package">
+			<abbr class="{{seestack.infos[method.packageInfo].importance}}" title="{{seestack.infos[method.packageInfo].description}}">{{method.package}}</abbr>
+			<abbr ng-show="method.methodInfo" class="{{method.importance}}" title="{{seestack.infos[method.methodInfo].description}}">{{method.rawLineAfterPackage}}</abbr>
+			<span ng-hide="method.methodInfo" class="{{method.importance}}">{{method.rawLineAfterPackage}}</span>
+		</span>
+		<span ng-hide="method.package" class="{{method.importance}}">
+			<abbr ng-show="method.methodInfo" class="{{method.importance}}" title="{{seestack.infos[method.methodInfo].description}}">{{method.rawLine}}</abbr>
+			<span ng-hide="method.methodInfo" class="{{method.importance}}">{{method.rawLine}}</span>
+		</span>
+	</div>
+</div>

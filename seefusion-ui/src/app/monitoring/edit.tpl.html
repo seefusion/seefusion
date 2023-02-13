@@ -1,0 +1,145 @@
+<form class="form-horizontal" name="ruleForm">
+	<div class="form-group" ng-class="{'has-error' : ruleForm.inputName.$dirty && ruleForm.inputName.$invalid}">
+		<label class="col-sm-2 control-label" for="inputName">Name</label>
+		<div class="col-sm-8">
+			<input type="text" id="inputName" name="inputName" placeholder="Rule Name..." ng-model="rule.name" ng-required="inputName" ng-pattern="/^[a-zA-Z0-9 ]*$/" class="form-control" />
+			<div role="alert" class="errorHighlight" ng-show="ruleForm.inputName.$dirty">
+      		<span  ng-show="ruleForm.inputName.$error.required">Please enter a rule name</span>
+      		<span  ng-show="ruleForm.inputName.$error.pattern">Rule name can only contain letters, numbers and spaces</span>
+    		</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="isEnabled">Enabled</label>
+		<div class="col-sm-8 controls">
+			<toggle-switch class="switch-success" ng-model="rule.isEnabled" on-label="Enabled" off-label="Disabled"></toggle-switch>
+		</div>
+	</div>
+
+	<div class="form-group" ng-class="{'has-error' : ruleForm.inputtriggerType.$dirty && ruleForm.inputtriggerType.$invalid}">
+		<label class="col-sm-2 control-label" for="inputtriggerType">Triggered By</label>
+		<div class="col-sm-8">
+			<select id="inputtriggerType" name="inputtriggerType" ng-model="rule.triggerType" ng-options="r.value as r.label for r in ruleTypes" ng-required class="form-control">
+				<option value="">Select a Trigger Type</option>
+			</select>
+			<div role="alert" class="errorHighlight" ng-show="ruleForm.inputtriggerType.$dirty">
+      		<span ng-show="ruleForm.inputtriggerType.$error.required">Please choose a trigger type</span>
+    		</div>
+		</div>
+	</div>
+
+	<div class="form-group" ng-class="{'has-error' : ruleForm.inputtriggerLimit.$dirty && ruleForm.inputtriggerLimit.$invalid}">
+		<label class="col-sm-2 control-label" for="inputtriggerLimit">Threshold</label>
+		<div class="col-sm-8 controls">
+			<input type="number" id="inputtriggerLimit" name="inputtriggerLimit" ng-model="rule.triggerLimit" class="input-mini" ng-pattern="/^[0-9]*$/" ng-required>
+			<span ng-switch on="rule.triggerType">
+			  <span ng-switch-when="ACTIVEREQ"> </span>
+			  <span ng-switch-when=""> </span>
+			  <span ng-switch-when="MEMORYPCT">%</span>
+			  <span ng-switch-default>Ms</span>
+			</span>	
+			<span class="help-block">This is the threshold at which this rule is triggered</span> 
+			<div role="alert" class="errorHighlight" ng-show="ruleForm.inputtriggerLimit.$dirty">
+      			<span ng-show="ruleForm.inputtriggerLimit.$invalid">The threshold value must be a number</span>
+    		</div>
+		</div>
+
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="inputexcludeURLs">Exclude URLs</label>
+		<div class="col-sm-8 controls">
+			<!-- <div ng-repeat="u in rule.excludeURLs">
+				<span class="glyphbutton glyphicons remove" ng-click="removeExclude(u)" title="Remove this exclusion URL"></span>
+				<span ng-bind="u"></span>
+			</div>
+			<div class="controls">
+				<input type="text" ng-model="newExclude">
+				<button class="btn btn-sm btn-primary" ng-click="addExclude()">Add</button>
+			</div> -->
+			<div class="controls">
+				<textarea id="inputexcludeURLs" name="inputexcludeURLs" split-array ng-model="rule.excludeURLs" class="form-control" rows=5></textarea>
+			</div>
+			<span class="help-block">Request-based rules that match these substrings will be ignored (one per line)</span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="inputDelay">Delay</label>
+		<div class="col-sm-8 controls">
+			<input type="number" id="inputDelay" placeholder="zzz" ng-model="rule.delay" class="input-mini" ng-pattern=/^[0-9]*$/> seconds
+			<span class="help-block">This is the amount of time the rule must be "active" before action or notification</span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="isKillResponse">Action</label>
+		<div class="col-sm-8 controls">
+			<!-- <input type="checkbox" id="isLogResponse" ng-model="rule.isLogResponse"><label for="isLogResponse"> Log Event</label><br/> --> <!-- DB Took this out, but not sure if that's going to be permanent -->
+			<input type="checkbox" id="isKillResponse" ng-model="rule.isKillResponse"> <label for="isKillResponse"> Kill (Oldest) Page</label>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="inputsleep">Sleep</label>
+		<div class="col-sm-8 controls">
+			<span><input type="number" id="inputsleep" placeholder="zzzz" ng-model="rule.sleep" class="input-mini" ng-pattern=/^[0-9]*$/ > minutes</span>
+			<span class="help-block">This is the delay between repeated triggers of this rule</span>
+		</div>
+	</div>
+
+	<div class="form-group"> 
+		<label class="col-sm-2 control-label" for="isNotifyResponse">Notify</label>
+		<div class="col-sm-8 controls">
+			<input type="checkbox" id="isNotifyResponse" ng-model="rule.isNotifyResponse"> <label for="isNotifyResponse"> Send Notification</label>
+		</div>
+	</div>
+
+	<div class="form-group" ng-show="rule.isNotifyResponse">
+		<label class="col-sm-2 control-label" for="inputsmtpFrom">Mail From:</label>
+		<div class="col-sm-8 controls">
+			<input type="text" id="inputsmtpFrom" placeholder="alerts@mydomain.com" ng-model="rule.smtpFrom">
+		</div>
+	</div>
+
+	<div class="form-group" ng-show="rule.isNotifyResponse">
+		<label class="col-sm-2 control-label" for="inputsmtpTo">Send To:</label>
+		<div class="col-sm-8 controls">
+			<input type="text" id="inputsmtpTo" placeholder="name@mydomain.com,name2@mydomain.com..." ng-model="rule.smtpTo">
+			<span class="help-block">Whitespace- or comma-delimited list</span>
+		</div>
+	</div>
+
+	<div class="form-group" ng-show="rule.isNotifyResponse">
+		<label class="col-sm-2 control-label" for="inputsmtpSubject">Subject</label>
+		<div class="col-sm-8 controls">
+			<input type="text" id="inputsmtpSubject" placeholder="The sky is falling..!" ng-model="rule.smtpSubject">
+			<span class="help-block">
+				You can include the following variables in the Subject of the message:<br> 
+				{name} : The name of the rule.<br>
+				{reason} : The reason the rule was hit (for example, "Current Request Count 15 >= limit of 15")<br>
+				{action} : The action(s) performed.<br>
+				<!--{uri} : The request that triggered this rule (or the oldest active request for Server rules)<br>
+				{query} : Information about the currently active query in the [oldest] active page.<br> -->
+			</span>
+					
+		</div>
+	</div>
+
+	<div class="form-group" ng-show="rule.isNotifyResponse">
+		<label class="col-sm-2 control-label" for="inputnotifyDisableMin">notifyDisableMin</label>
+		<div class="col-sm-8 controls">
+			<input type="number" id="inputnotifyDisableMin" placeholder="" ng-model="rule.notifyDisableMin" class="input-mini" ng-pattern=/^[0-9]*$/>min
+			<span class="help-block">This is the amount of that must elapse between notifications.</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-8 controls">
+			<button type="submit" class="btn btn-primary" ng-click="submitted=true;save();" href="#" onClick="return false;">Save</button>
+			<button type="submit" class="btn btn-default" ui-sref="monitoring.rules">Cancel</button>
+			<img src="images/loading.gif" ng-show="saveBusy" />
+			<img src="images/messages/error.png" ng-show="saveNotOK" />{{saveErr}}
+		</div>
+	</div>
+</form>

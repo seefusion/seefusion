@@ -1,0 +1,5 @@
+<div ng-class="['alert', 'alert-'+notification.type]" ng-repeat="notification in notifications.getCurrent()">
+    <button class="close" ng-click="removeNotification(notification)">x</button>
+    <span ng-if="notification.type === 'success'" class="glyphicon glyphicon-thumbs-up"></span> 
+    {{notification.message}}
+</div>

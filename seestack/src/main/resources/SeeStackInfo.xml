@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<seestackinfo>
+	<threadinfos>
+		<threadinfo>
+			<nameprefix>jrpp-</nameprefix>
+			<description>JRun (or ColdFusion) application request thread</description>
+			<isappthread>true</isappthread>
+			<importance>high</importance>
+		</threadinfo>
+		<threadinfo>
+			<nameprefix>web-</nameprefix>
+			<description>JRun (or ColdFusion) application request thread</description>
+			<isappthread>true</isappthread>
+			<importance>high</importance>
+		</threadinfo>
+		<threadinfo>
+			<nameprefix>Servlet.Engine.Transports</nameprefix>
+			<description>Websphere application request thread</description>
+			<isappthread>true</isappthread>
+			<importance>high</importance>
+		</threadinfo>
+		<threadinfo>
+			<nameprefix>http-</nameprefix>
+			<description>Tomcat application request thread</description>
+			<isappthread>true</isappthread>
+			<importance>high</importance>
+		</threadinfo>
+	</threadinfos>
+	<packageinfos>
+		<packageinfo>
+			<nameprefix>net.sourceforge.jtds.</nameprefix>
+			<description>JTDS (Sybase/SQL Server) Database Driver</description>
+			<importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>oracle.jdbc.</nameprefix>
+			<description>Oracle "Official" Database Driver</description>
+			<importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>macromedia.jdbc.sqlserver.</nameprefix>
+			<description>Sybase/SQL Server Database Driver from Adobe</description>
+			<importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>coldfusion.sql.</nameprefix>
+			<description>CFQuery/CFStoredproc</description>
+			<importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>org.apache.catalina.</nameprefix>
+			<description>Tomcat</description>
+			<importance>low</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>railo.runtime.tag.Query</nameprefix>
+			<description>CFQUERY tag</description>
+			<importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>railo.runtime.</nameprefix>
+			<description>Railo</description>
+			<importance>low</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>java.io.</nameprefix>
+			<description>Java Standard I/O Class Library</description>
+			<importance>medium</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>java.net.</nameprefix>
+			<description>Java Standard Networking Class Library</description>
+			<importance>medium</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>java.lang.</nameprefix>
+			<description>Java Standard Class Library</description>
+			<importance>low</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>java.util.</nameprefix>
+			<description>Java Standard Class Library</description>
+			<importance>low</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>org.apache.myfaces.</nameprefix>
+			<description>Apache "Java Server Faces"</description>
+			<importance>low</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>com.lowagie.text.pdf.</nameprefix>
+			<description>CFDocument PDF converter</description>
+			<importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>com.adobe.coldfusion</nameprefix>
+			<description>ColdFusion built-in component</description>
+			<importance>builtin</importance>
+		</packageinfo>
+		<packageinfo>
+			<nameprefix>org.railo.cfml</nameprefix>
+			<description>Railo built-in component</description>
+			<importance>builtin</importance>
+		</packageinfo>
+		<packageinfo>
+		  <nameprefix>com.microsoft.sqlserver.jdbc</nameprefix>
+		  <description>Microsoft SQL Server JDBC Driver</description>
+		  <importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+		  <nameprefix>lucee.runtime.tag.Query</nameprefix>
+		  <description>Lucee cfquery tag</description>
+		  <importance>high</importance>
+		</packageinfo>
+		<packageinfo>
+		  <nameprefix>lucee.</nameprefix>
+		  <description>Lucee Application Server</description>
+		  <importance>low</importance>
+		</packageinfo>
+	</packageinfos>
+	<methodinfos>
+		<!-- adding this methodInfo so we have something to test -->
+		<methodinfo>
+			<nameprefix>org.apache.tomcat.jni.Socket.accept</nameprefix>
+			<description>Testing</description>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.lang.DocumentTag.doStartTag</nameprefix>
+			<description>CFDocument</description>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.lang.DocumentSectionTag.doAfterBody</nameprefix>
+			<description>CFDocument (CFDocumentSection)</description>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.lang.DocumentTag.doAfterBody</nameprefix>
+			<description>CFDocument</description>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.compiler.NeoTranslator.translateJava</nameprefix>
+			<description>Compiling ColdFusion page</description>
+			<longdescription>ColdFusion is forced to compile a page.  This could mean the server is recently started,
+			or that the template cache size is too small for the number of pages and CFCs in your application.</longdescription>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>macromedia.jdbc.sqlserver.SQLServerByteOrderedDataReader.readPacketIntoPrimaryBuffer</nameprefix>
+			<description>Waiting for response from database server</description>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>java.net.SocketInputStream.socketRead</nameprefix>
+			<description>Waiting for data from network connection</description>
+			<importance>delegate</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>java.net.PlainSocketImpl.socketAccept</nameprefix>
+			<description>Waiting for new inbound TCP connections</description>
+			<importance>low</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>java.lang.Thread.dumpThreads</nameprefix>
+			<description>Gathering this stack trace</description>
+			<importance>idle</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>java.lang.Object.wait</nameprefix>
+			<description>Waiting for an object lock to release</description>
+			<longdescription>This object is waiting for another a certain period of time to elapse, or another 
+			object to notify it to proceed.  Usually, this can be ignored; if this is being called directly by 
+			your application code, this indicate a bottleneck.</longdescription>
+			<importance>delegate</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>jrun.servlet.jrpp.ProxyEndpoint.readInt</nameprefix>
+			<description>Waiting for a page request from the Web server</description>
+			<longdescription><![CDATA[
+			<p>If you're seeing this issue for <i>active</i> threads, then these are the likely causes:</p>
+			<ol>
+			<li>There's a network issue preventing packets from getting through;</li>
+			<li>Something went horribly wrong with the Web server plug-in;</li>
+			<li>The Web server plug-in is a different version than the JRun server, and this is interfering with communications.</li>
+			</ol>
+			<p>Things to try:</p>
+			<ol>
+				<li>Use the "wsconfig" tool in \jrun4\bin or \cfusionmx\runtime\bin to uninstall and reinstall the Web server plug-in;</li>
+				<li>Increase the TCP receive buffer window size to improve the efficiency of web server to JRun server communications (see <a href="http://cfprimer.blogspot.com/2005/03/tcpip-efficiency.html">http://cfprimer.blogspot.com/2005/03/tcpip-efficiency.html</a>);</li>
+				<li>If you can reproduce this, use a tool such as Ethereal to capture the communications around the time that things go bad, and send that trace file to us or Adobe Product Support (or both!) for analysis.</li>
+			</ol>
+			]]></longdescription>
+			<importance>low</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>jrun.servlet.jrpp.ProxyEndpoint.getHeader</nameprefix>
+			<description>Fetching CGI header from Web server</description>
+			<longdescription><![CDATA[
+			<p>If you're seeing this issue for many or all threads, then these are the likely causes:</p>
+			
+			<ol>
+			<li>There's a network issue preventing packets from getting through;</li>
+			<li>Something went horribly wrong with the Web server plug-in;</li>
+			<li>The Web server plug-in is a different version than the JRun server, and this is interfering with communications.</li>
+			</ol>
+			<p>Things to try:</p>
+			<ol>
+				<li>Use the "wsconfig" tool in \jrun4\bin or \cfusionmx\runtime\bin to uninstall and reinstall the Web server plug-in;</li>
+				<li>Increase the TCP receive buffer window size to improve the efficiency of web server to JRun server communications (see <a href="http://cfprimer.blogspot.com/2005/03/tcpip-efficiency.html">http://cfprimer.blogspot.com/2005/03/tcpip-efficiency.html</a>);</li>
+				<li>If you can reproduce this, use a tool such as Ethereal to capture the communications around the time that things go bad, and send that trace file to us or Adobe Product Support (or both!) for analysis.</li>
+			</ol>
+			]]></longdescription>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.net.HttpTag.doEndTag(</nameprefix>
+			<description>CFHTTP tag</description>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.runtime.TemplateClassLoader.findClass</nameprefix>
+			<description>In template classloader</description>
+			<longdescription><![CDATA[
+			<p>If you're seeing this issue for many or all threads, then these are the likely causes:</p>
+			
+			<ol>
+			<li>You have "save class files" enabled in the ColdFusion Administrator</li>
+			<li>Something is causing class files to be constantly recompiled</li>
+			</ol>
+			<p>Things to try:</p>
+			<ol>
+				<li>Turn off "save class files" in the ColdFusion Administrator;</li>
+				<li>Find out what is causing templates to be continuously recompiled and stop it!  (Note that anything that resets timestamps on templates will force recompiles.)</li>
+			</ol>
+			]]></longdescription>
+			<importance>high</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.validation.CFMLTagLibrary.lookup</nameprefix>
+			<description>Validating a CF tag while compiling a ColdFusion page</description>
+			<importance>medium</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.sql.QueryTag.doEndTag</nameprefix>
+			<description>Running a query using CFQUERY</description>
+			<importance>medium</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>railo.runtime. tag.Query.doEndTag</nameprefix>
+			<description>Running a query using CFQUERY</description>
+			<importance>medium</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>coldfusion.tagext.sql.StoredProcTag.doEndTag</nameprefix>
+			<description>Running a query using CFSTOREDPROC</description>
+			<importance>medium</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>*.cfm</nameprefix>
+			<description>ColdFusion Page</description>
+			<importance>user</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>*.cfc</nameprefix>
+			<description>ColdFusion Component</description>
+			<importance>user</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>jrun.servlet.jrpp.JRunProxyService.accept</nameprefix>
+			<description>JRun JRPP Service Endpoint</description>
+			<longdescription><![CDATA[
+				The JRun Proxy Service is waiting for new TCP socket connections to come from the Web server.  This is normal, and can be ignored.
+				]]>
+			</longdescription>
+			<importance>idle</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>at jrun.servlet.jrpp.ProxyEndpoint.readRequest</nameprefix>
+			<description>Idle JRun JRPP Worker Thread</description>
+			<longdescription><![CDATA[
+				The JRun Proxy Service is waiting for information about new page
+				requests to come from the Web server.  This is normal, and can <i>usually</i> be ignored.
+				
+				In rare cases, this may indicate a TCP communication problem between the Web server and JRun, if they are on different physical machines.
+				]]>
+			</longdescription>
+			<importance>idle</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>jrun.servlet.jrpp.JrppOutputStream$SpillStream.write</nameprefix>
+			<description>Writing completed page back to the Web server.</description>
+			<longdescription><![CDATA[
+			<p>If you're seeing this issue for many or all threads, then these are the likely causes:</p>
+			<ol>
+			<li>You have many users downloading very large pages over very slow (dialup?) connections.</li>
+			<li>Your internet connection is flooded.</li>
+			<li>Something is misconfigured with your network.</li>
+			</ol>
+			<p>Things to try:</p>
+			<ol>
+				<li>Enable response compression at the Web server.</li>
+				<li>Ensure no networking devices are set to "autonegotiate"-- force speed/duplex settings for all devices</li>
+				<li>Use a packet analyzer to determine if your response tcp window size is very small.
+				If so, ensure that any response proxy servers or load balancers have a large enough response buffer.</li>
+			</ol>
+			]]></longdescription>
+			<importance>low</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>jrunx.scheduler.ThreadPool$Throttle.enter</nameprefix>
+			<description>Waiting for request handler thread.</description>
+			<importance>idle</importance>
+			<longdescription><![CDATA[
+			<p>If you're seeing this issue for many or all threads, then these are the likely causes:</p>
+			<ol>
+			<li>You have confgured too few request handler threads (eg, in the ColdFusion Administrator)</li>
+			<li></li>
+			</ol>
+			]]></longdescription>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>railo.runtime.java.JavaObject.call</nameprefix>
+			<description>Calling a method on a Java object</description>
+			<importance>delegate</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>java.lang.Thread.sleep</nameprefix>
+			<description>This thread has been told to sleep for some time</description>
+			<importance>idle</importance>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>railo.runtime.tag.Flush.doStartTag</nameprefix>
+			<description>&lt;cfflush&gt; tag</description>
+			<importance>medium</importance>
+			<longdescription><![CDATA[
+			<p>If you're seeing this issue for many or all threads, you're likely either streaming data over time, or you're pushing large amounts of data to poorly-connected or slow browsers.</p>
+			]]></longdescription>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>java.lang.ClassLoader.loadClass</nameprefix>
+			<description>Loading a class definition (or other file) using the Java classloader</description>
+			<importance>low</importance>
+			<longdescription><![CDATA[
+			<p>This is normally seen then the Java ClassLoader is loading a class definition, but can also be seen when loading another resource in the classpath, such as a properties file.</p>
+			]]></longdescription>
+		</methodinfo>
+		<methodinfo>
+			<nameprefix>org.railo.cfml.query_cfc</nameprefix>
+			<description>Running a query using the Query cfc</description>
+			<importance>high</importance>
+			<longdescription><![CDATA[
+			<p>This is normally seen then the Java ClassLoader is loading a class definition, but can also be seen when loading another resource in the classpath, such as a properties file.</p>
+			]]></longdescription>
+		</methodinfo>
+    <methodinfo>
+      <nameprefix>lucee.runtime.PageContextImpl.doInclude</nameprefix>
+      <description>Lucee cfinclude</description>
+      <importance>low</importance>
+      <longdescription>This is a normal activity for most sites.</longdescription>
+    </methodinfo>
+    <methodinfo>
+      <nameprefix>lucee.runtime.tag.CFTag.doInclude</nameprefix>
+      <description>Lucee cfmodule</description>
+      <importance>low</importance>
+      <longdescription>This is a normal activity for most sites.</longdescription>
+    </methodinfo>
+    <methodinfo>
+      <nameprefix>lucee.commons.db.DBUtil.closeEL</nameprefix>
+      <description>Lucee is closing a database statement</description>
+      <importance>high</importance>
+      <longdescription>If this is happening a lot, check your queries to make sure they're not dealing with very large amounts of data.</longdescription>
+    </methodinfo>
+    <methodinfo>
+      <nameprefix>lucee.runtime.tag.Query</nameprefix>
+      <description>Lucee cfquery tag</description>
+      <importance>high</importance>
+      <longdescription>If you're seeing this a lot for one query, make sure that query is properly indexed.</longdescription>
+    </methodinfo>
+    <methodinfo>
+      <nameprefix>lucee.runtime.db.driver.state.StatePreparedStatement.execute</nameprefix>
+      <description>Lucee cfquery tag with cfqueryparam subtag(s)</description>
+      <importance>high</importance>
+      <longdescription>If you're seeing this a lot for one query, make sure that query is properly indexed.</longdescription>
+    </methodinfo>
+	</methodinfos>
+</seestackinfo>

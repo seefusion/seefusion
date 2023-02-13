@@ -1,0 +1,532 @@
+<html>
+<head>
+<style>
+html,body {font-family: Tahoma, Geneva, sans-serif;color: #000;}
+a,a:hover {color: cornflowerblue;}
+h1 {font-weight: bold;font-size:1.2em;margin-top:0;padding-top:0;}
+h2 {font-weight: bold;font-size:1em; background-color:#f9f9f9;padding:.2em 2em .1em .2em; border:1px solid #ddd; margin:0;}
+h3 {font-size:1em;font-weight:bold;}
+.infoHolder {border:1px solid #ccc;background-color:#fff;padding:1em;margin:1em 0;overflow-x:auto;}
+table { border-spacing: 0; border-collapse: collapse; }
+td, th {padding: 1em;text-align: left;}
+td {border-bottom:1px solid #ccc;}
+table tr:first-child td {border-top:1px solid #ccc;}
+.infoHolder table tr td, .infoHolder table tr th {font-size:.8em;}
+tr.even td, td.even, td.light { background-color: #efefef; }
+tr.odd td, td.odd, td.dark { background-color: #dcdcdd; }
+
+
+/* SF styles for stack.  Remove if you don't want them */
+.threadName, .heavy {
+	font-weight: bold;
+}
+.method {
+	margin-left: 20px;
+}
+.Delegate {
+	color: #08c;
+}
+.Low {
+	color: #888;
+}
+.Medium {
+	color: orange;
+}
+.High {
+	color: red;
+	font-weight: bold;
+}
+.Idle {
+	color: #aaa;
+}
+.errorHighlight {
+	color: #a94442;
+}
+
+.white {color:white!important;}
+.red {color:red;}
+.blue {color:blue;}
+.green {color:green;}
+.black {color:black;}
+.grey {color:#ddd;}
+</style>
+</head>
+
+<body>
+
+<h1>SeeFusion Email Notification from server {0} at {1}</h1>
+
+<!-- Server Info: -->
+<div class="infoHolder">
+<h3>Server Statistics:</h3>
+<table>
+<tr>
+	<td class="odd"><b>Server Info:</b></td>
+	<td class="even">Memory: {2}m/{3}m</td>
+	<td class="even">Uptime: {4}</td>
+	<td class="even" colspan="2">&nbsp;<br/></td>
+</tr>
+
+<tr>
+	<td class="odd"><b>{0} Averages:</b></td>
+	<td class="even">Last Sec: {1}, avg {2}ms</td>
+	<td class="even">Last 10 Sec: {3}/sec, avg {4}ms</td>
+	<td class="even">Last 60 Sec: {5}/sec, avg {6}ms</td>
+	<td class="even">Since Startup: {7}</td>
+</tr>
+
+<tr>
+	<td class="odd"><b>Query Averages:</b></td>
+	<td class="even">Last Sec: 0, avg 0ms</td>
+	<td class="even">Last 10 Sec: 0/sec, avg 0ms</td>
+	<td class="even">Last 60 Sec: 0/sec, avg 0ms</td>
+	<td class="even">Since Startup: 50</td>
+</tr>
+</table>
+</div>
+
+<!-- Active Requests -->
+<div class="infoHolder">
+<h3>Active Requests:</h3>
+No active requests
+</div>
+
+<!-- Recent Requests -->
+<div class="infoHolder">
+<h3>Recent Requests:</h3>
+<table>
+<tr>
+	<th>Request</th>
+	<th>Completed</th>
+	<th>From IP</th>
+	<th>Response</th>
+	<th>Elapsed</th>
+	<th>Queries</th>
+	<th>Qry Time</th>
+	<th>Long Qry</th>
+	<th>Rows</th>
+</tr>
+<tr class="{0}">
+	<td>{1}</td>
+	<td>{2}</td>
+	<td>{3}</td>
+	<td>{4}@{5}ms</td>
+	<td>{6}ms</td>
+	<td>{7}</td>
+	<td>{8}</td>
+	<td>{9}ms</td>
+	<td>{10}</td>
+</tr>
+<tr class="{0}" >
+	<td colspan="9">
+		<b>SQL: {1}</b><br/>
+	</td>
+</tr>
+<tr class="odd"> 
+	<td>127.0.0.1/rest/visionastapi/user/team/A20F0C2D-685F-427E-B30D12BB162E8...</td>
+	<td>1/24/17 12:01 pm</td>
+	<td>127.0.0.1</td>
+	<td>200@115ms</td>
+	<td>117ms</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0ms</td>
+	<td>0</td>
+</tr>
+<tr class="odd" >
+	<td colspan="9">
+		<b>SQL:</b><br/>
+	</td>
+</tr>
+<tr class="even">
+	<td>127.0.0.1/rest/visionastapi/user/team/A20F0C2D-685F-427E-B30D12BB162E8...</td>
+	<td>1/24/17 12:01 pm</td>
+	<td>127.0.0.1</td>
+	<td>200@115ms</td>
+	<td>117ms</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0ms</td>
+	<td>0</td>
+</tr>
+<tr class="even" >
+	<td colspan="9">
+		<b>SQL:</b><br/>
+	</td>
+</tr>
+<tr class="odd">
+	<td>127.0.0.1/rest/visionastapi/user/team/A20F0C2D-685F-427E-B30D12BB162E8...</td>
+	<td>1/24/17 12:01 pm</td>
+	<td>127.0.0.1</td>
+	<td>200@115ms</td>
+	<td>117ms</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0ms</td>
+	<td>0</td>
+</tr>
+<tr class="odd" >
+	<td colspan="9">
+		<b>SQL:</b><br/>
+	</td>
+</tr>
+<tr class="even">		
+	<td>127.0.0.1/rest/visionastapi/user/team/A20F0C2D-685F-427E-B30D12BB162E8...</td>
+	<td>1/24/17 12:01 pm</td>
+	<td>127.0.0.1</td>
+	<td>200@115ms</td>
+	<td>117ms</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0ms</td>
+	<td>0</td>
+</tr>
+<tr class="even" >
+	<td colspan="9">
+		<b>SQL:</b><br/>
+	</td>
+</tr>
+</table>
+</div>
+
+<!-- Slow Requests -->
+<div class="infoHolder">
+<h3>Slow Requests:</h3>
+<table>
+	<tr>
+		<th>Request</th>
+		<th>Completed</th>
+		<th>From IP</th>
+		<th>Response</th>
+		<th>Elapsed</th>
+		<th>Queries</th>
+		<th>Qry Time</th>
+		<th>Long Qry</th>
+		<th>Rows</th>
+	</tr>
+	<tr class="even">
+		<td>127.0.0.1/rest/visionastapi/user/team/A20F0C2D-685F-427E-B30D12BB162E8...</td>
+		<td>1/24/17 12:01 pm</td>
+		<td>127.0.0.1</td>
+		<td>200@115ms</td>
+		<td>117ms</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0ms</td>
+		<td>0</td>
+	</tr>
+	<tr class="even" >
+		<td colspan="9">
+<b>SQL:</b><br/>
+			
+SELECT 
+p.DeviceGuid 
+, p.ProductGuid 
+, p.phoneID 
+, p.product_id 
+, p.ProductID 
+, p.GersSku 
+, p.pageTitle 
+, p.summaryTitle 
+, p.detailTitle 
+, p.CarrierId 
+, p.carrierName 
+, p.carrierLogoSmall 
+, p.carrierLogoMedium 
+, p.carrierLogoLarge 
+, p.manufacturerGuid 
+, p.manufacturerName 
+, p.bWarehouse 
+, p.bFreeAccessory 
+, p.smimage 
+, p.smimagewidth 
+, p.smimageheight 
+, p.stdimage 
+, p.stdimagewidth 
+, p.stdimageheight 
+, p.lrgimage 
+, p.lrgimagewidth 
+, p.lrgimageheight 
+, p.summaryDescription 
+, p.detailDescription 
+, p.MetaKeywords 
+, p.MetaDescription 
+, p.ReleaseDate 
+, p.prepaid 
+, p.typeID 
+, p.price_retail 
+, p.price_new 
+, p.new_rebateTotal 
+, p.price_upgrade 
+, p.upgrade_rebateTotal 
+, p.price_addaline 
+, p.addaline_rebateTotal 
+, p.UPC 
+, p.QtyOnHand 
+, p.DefaultSortRank 
+FROM catalog.dn_Phones p 
+
+INNER JOIN catalog.Product prod WITH (NOLOCK) 
+ON p.ProductGuid = prod.ProductGuid 
+AND prod.Active = 1 
+
+WHERE 
+1=1 
+AND EXISTS ( 
+SELECT 1 
+FROM catalog.ProductTag pt WITH (NOLOCK) 
+WHERE 
+pt.Tag = ? 
+AND pt.ProductGuid = p.ProductGuid 
+) 
+
+AND p.carrierID IN ( ?,?,?,?,? ) 
+ORDER BY CarrierName, DetailTitle 
+1:[Object/VARCHAR]phone 
+2:[Object/INTEGER]0 
+3:[Object/INTEGER]299 
+4:[Object/INTEGER]42 
+5:[Object/INTEGER]109 
+6:[Object/INTEGER]128 
+{dsn=wirelessadvocates}
+   			
+   		</td>
+	</tr>
+	<tr class="odd">
+		<td>127.0.0.1/rest/visionastapi/user/team/A20F0C2D-685F-427E-B30D12BB162E8...</td>
+		<td>1/24/17 12:01 pm</td>
+		<td>127.0.0.1</td>
+		<td>200@115ms</td>
+		<td>117ms</td>
+		<td>0</td>
+		<td>0</td>
+		<td>0ms</td>
+		<td>0</td>
+	</tr>
+	<tr class="odd" >
+		<td colspan="9">
+
+<b>SQL:</b><br/>
+select 
+102 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price = .01 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+
+
+union 
+
+select 
+26 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price > 0 and gp.price < 20 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+
+
+union 
+
+select 
+27 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price >= 20 and gp.price <= 50 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+
+
+union 
+
+select 
+28 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price >= 50 and gp.price <= 100 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+
+
+union 
+
+select 
+29 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price >= 100 and gp.price <= 200 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+
+
+union 
+
+select 
+30 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price >= 200 and gp.price <= 300 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+
+
+union 
+
+select 
+31 as filterOrder 
+, count(*) as filterItemCount 
+from catalog.dn_Phones p 
+where exists ( 
+select 1 
+from ( 
+select p.productguid from catalog.product p inner join catalog.gersprice gp on p.gerssku = gp.gerssku where gp.pricegroupcode = 'ECU' and getdate() >= gp.startdate and getdate() <= gp.enddate and gp.price >= 300 
+) as prod 
+where prod.ProductGuid = p.ProductGuid 
+) 
+and exists ( 
+select 1 
+from 
+catalog.ProductTag pt 
+where 
+pt.tag = ? 
+AND pt.productguid = p.productguid 
+) 
+
+and p.carrierID IN ( ?,?,?,?,? ) 
+1:[Object/VARCHAR]phone 
+2:[Object/INTEGER]0 
+3:[Object/INTEGER]299 
+4:[Object/INTEGER]42 
+5:[Object/INTEGER]109 
+6:[Object/INTEGER]128 
+7:[Object/VARCHAR]phone 
+8:[Object/INTEGER]0 
+9:[Object/INTEGER]299 
+10:[Object/INTEGER]42 
+11:[Object/INTEGER]109 
+12:[Object/INTEGER]128 
+13:[Object/VARCHAR]phone 
+14:[Object/INTEGER]0 
+15:[Object/INTEGER]299 
+16:[Object/INTEGER]42 
+17:[Object/INTEGER]109 
+18:[Object/INTEGER]128 
+19:[Object/VARCHAR]phone 
+20:[Object/INTEGER]0 
+21:[Object/INTEGER]299 
+22:[Object/INTEGER]42 
+23:[Object/INTEGER]109 
+24:[Object/INTEGER]128 
+25:[Object/VARCHAR]phone 
+26:[Object/INTEGER]0 
+27:[Object/INTEGER]299 
+28:[Object/INTEGER]42 
+29:[Object/INTEGER]109 
+30:[Object/INTEGER]128 
+31:[Object/VARCHAR]phone 
+32:[Object/INTEGER]0 
+33:[Object/INTEGER]299 
+34:[Object/INTEGER]42 
+35:[Object/INTEGER]109 
+36:[Object/INTEGER]128 
+37:[Object/VARCHAR]phone 
+38:[Object/INTEGER]0 
+39:[Object/INTEGER]299 
+40:[Object/INTEGER]42 
+41:[Object/INTEGER]109 
+42:[Object/INTEGER]128 
+{dsn=wirelessadvocates}		
+		</td>
+	</tr>	
+</table>
+</div>
+
+
+
+</body>
+</html>

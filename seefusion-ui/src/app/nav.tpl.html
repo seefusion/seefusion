@@ -1,0 +1,35 @@
+<ul  class="nav nav-pills nav-stacked" ng-if="isAuthenticated">
+    <li title="SeeFusion">
+        <img src="SeeFusionInv.png" alt="SeeFusion" width="180" border="0"/>
+    </li>
+    <!-- ng-if="isAuthenticated" -->
+    <!-- Server --> 
+    <li ui-sref="server.active" title="Server" ng-class="$state.includes('server') ? 'icon_link' : 'white'">
+        <span class="glyphicons imac"></span> <span class="navText">Server</span>
+    </li>
+    <!-- Dashboard -->
+    <li ui-sref="dashboard.all" title="Dashboard" ng-class="$state.includes('dashboard') ? 'icon_link' : 'white'">
+        <span class="glyphicons more_windows"></span> <span class="navText">Dashboard</span>
+    </li>
+    <!-- Counters -->
+    <li ui-sref="counters" title="Counters" ng-class="$state.includes('counters') ? 'icon_link' : 'white'">
+        <span class="glyphicons cardio"></span> <span class="navText">Counters</span>
+    </li>
+    <!-- Configuration -->
+    <li ui-sref="config" title="Configuration" ng-class="$state.includes('config') ? 'icon_link' : 'white'"><span class="glyphicons settings"></span> <span class="navText">Configuration</span></li>
+    <!-- Active Monitoring -->
+    <li ui-sref="monitoring.rules" title="Active Monitoring" ng-class="$state.includes('monitoring') ? 'icon_link' : 'white'"><span class="glyphicons group"></span> <span class="navText">Active Monitoring</span></li>
+    <!-- Stack -->
+    <li ui-sref="stack.seestack({threadname:'',requestid:''})" title="Stack" ng-class="$state.includes('stack') ? 'icon_link' : 'white'"><span class="glyphicons show_lines"></span> <span class="navText">Stack</span></li>
+    <!-- Profiling -->
+    <li ui-sref="profiling" title="Profiling" ng-class="$state.includes('profiling') || $state.includes('profile') ? 'icon_link' : 'white'"><span class="glyphicons record"></span> <span class="navText">Profiling</span></li>
+    <!-- DOS Protection -->
+    <li ui-sref="dos" title="DOS Protection" ng-class="$state.includes('dos') ? 'icon_link' : 'white'"><span class="glyphicons shield"></span> <span class="navText">DOS Protection</span></li>
+    <!-- Logging -->
+    <li ui-sref="log" title="Log" ng-class="$state.includes('log') ? 'icon_link' : 'white'"><span class="glyphicons blog"></span> <span class="navText">Logs</span></li>
+    <!-- About -->
+    <li ui-sref="about" title="About" ng-class="$state.includes('about') ? 'icon_link' : 'white'"><span class="glyphicons circle_question_mark"></span> <span class="navText">About SeeFusion</span></li>
+    
+    <li ng-click="logout()" title="Logout" class="white"><span class="glyphicons log_out"></span> <span class="navText">Log Out</span></li>
+    <li ng-click="toggleNav()" class="white"><span class="glyphicons resize_small"></span> <span class="navText">Toggle Nav</span></li>
+</ul> 

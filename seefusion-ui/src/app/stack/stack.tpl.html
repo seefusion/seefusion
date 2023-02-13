@@ -1,0 +1,26 @@
+<div class="panel">
+	<div class="content">
+		<form>
+			<label for="filterText">Thread name filter: <input type="text" name="trace-filter" class="trace-filter" ng-model="trace.threadname" id="filterText"/>
+				<button class="btn btn-primary btn-sm" ng-click="getStack()">Trace</button>
+				<button class="btn btn-default btn-sm" ng-click="doClear()">Clear</button>
+			</label>
+			<label for="activeOnlyBox"><input type="checkbox" ng-model="trace.activeOnly" id="activeOnlyBox">Show Active Threads Only</label>
+		</form>
+	</div>
+	
+	<div ng-hide="rawstack == '' || busy || stackMessage">
+	    
+	    <ul class="nav nav-tabs nav-inner">
+		    <li ng-class="{active:$state.includes('stack.seestack')}"><a ui-sref="stack.seestack">SeeStack</a></li>
+		    <li ng-class="{active:$state.includes('stack.trace')}"><a ui-sref="stack.trace">Raw Trace</a></li>
+	    </ul>
+
+	    <div class="push-down" ui-view></div>
+
+	</div>
+
+	<div ng-show="stackMessage" class="problemTitle">
+		 <span class="glyphicons circle_exclamation_mark"></span> {{stackMessage}}
+	</div>
+</div>

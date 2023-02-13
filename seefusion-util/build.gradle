@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompileOnly 'junit:junit:4.11'
+}
+
+description = 'seefusion-util'

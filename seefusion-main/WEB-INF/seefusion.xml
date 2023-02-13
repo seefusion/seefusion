@@ -1,0 +1,24 @@
+<config>
+	<enabled>true</enabled>
+	<name>{hostname}</name>
+	<listeners>all:8999</listeners>
+	<maxRequests>50</maxRequests>
+	<historySize>100</historySize>
+	<slowHistorySize>100</slowHistorySize>
+	<slowPageThreshold>5000</slowPageThreshold>
+	<slowQueryThreshold>1000</slowQueryThreshold>
+	<dashboardMinSlowRequests>5</dashboardMinSlowRequests>
+	<browserURL>http://Daryl-HP:8999/</browserURL>
+	<clickableURLs>true</clickableURLs>
+	<httpConfigPassword>lqKUSMt6VlTd3UUROkWjl6hrCRK2jVcp49LmUNWhNVU=:8093798457616546566</httpConfigPassword>
+	<license>Beta Evaluation:Hourly:
+V2FlHTB7W9NhecP9+nbmAPyBgncqPCx9WCaR6LOGABvnV+CQJkzuGiqQGEjRGs0e4sj1dVWPaojsw85QPI/r78nE7pfO35RfTQG3sEgr4YDApzdf+vf3pWA6w0OGirPhebRF0TcLB/p3i/Y3bW1cVOjAxYFASXPJwWnmtJZaQYn7cijXLgh0R8dik3S74WaKAOieOpSR0ZmR8iGyDOAiNHpxgB51imRwGVR6Uz4+peq1iCPUSUZq7B6n0Pn9JRlCqB3yqJ2Qagau2q8Vz+a33jdC77wuhAXhXUlkZPeInPIpZ9+LDKCZjgVMz7xhmeyzd6jJ28iv4yIBItz5FUfpeQ==</license>
+	<cloudwatchEnabled>false</cloudwatchEnabled>
+	<dosmanager>
+		<enabled>true</enabled>
+		<requestlimit>0</requestlimit>
+		<bandurationmin>0</bandurationmin>
+		<excludes></excludes>
+		<block></block>
+	</dosmanager>
+</config>
