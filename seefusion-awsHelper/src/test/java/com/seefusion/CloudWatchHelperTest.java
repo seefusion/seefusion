@@ -14,8 +14,8 @@ public class CloudWatchHelperTest {
 		Counters counters = new Counters("", new Date(System.currentTimeMillis()), "foo", 60, 100, 100000L, 1000, 5000L, 123456L, 1000000L, 30000L, 3);
 		SeeFusion sf = SeeFusion.getInstance();
 		Config config = sf.getConfig();
-		config.setProperty("awsAccessKey", "AKIAJCLBLGNZYAUMXVOA");
-		config.setProperty("awsSecretKey", "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");
+		config.setProperty("awsAccessKey", "-----------");
+		config.setProperty("awsSecretKey", "-----------");
 		config.setProperty("cloudwatchEnabled", "true");
 		sf.configure();
 		long startTick = System.currentTimeMillis();
