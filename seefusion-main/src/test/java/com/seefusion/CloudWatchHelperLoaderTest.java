@@ -20,8 +20,8 @@ public class CloudWatchHelperLoaderTest {
 	public void testPushMetric() throws Exception {
 		SeeFusion sf = SeeFusion.getInstance();
 		Config config = sf.getConfig();
-		config.setProperty("awsAccessKey", "AKIAJCLBLGNZYAUMXVOA");
-		config.setProperty("awsSecretKey", "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");
+		config.setProperty("awsAccessKey", "------------");
+		config.setProperty("awsSecretKey", "------------");
 		config.setProperty("cloudwatchEnabled", "true");
 		sf.configure();
 		Observer<Config> test = sf.getCloudWatchHelper();
