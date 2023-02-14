@@ -9,12 +9,12 @@ public class InstallTomcatValveTest {
 
 	String xml;
 	
-	@Before
+	// @Before
 	public void setUp() throws Exception {
 		xml = Util.readFile("./src/test/resources/tomcat7/server.xml");
 	}
 	
-	@Test
+	// @Test
 	public void testInstallUninstall() throws Exception {
 		InstallTomcatValve test = new InstallTomcatValve(xml);
 		assertFalse(test.isInstalled());

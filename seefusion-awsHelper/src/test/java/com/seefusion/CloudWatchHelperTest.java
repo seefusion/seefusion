@@ -5,10 +5,12 @@ import static org.junit.Assert.assertTrue;
 import java.sql.Date;
 
 import org.junit.Test;
+import org.junit.Ignore;
 
 public class CloudWatchHelperTest {
 
-	@Test
+	// @Test @Ignore
+	// need to not commit the aws keys... again  TODO: find a way to provide this data without accidentally checking in creds and getting nastygrams from AWS
 	public void testPushMetric() throws InterruptedException {
 		// Counters counters = new Counters("", new Date(), "foo", 60, 100, 100000, 1000, 5000, 123456L, 1000000L, 30000L, 3);
 		Counters counters = new Counters("", new Date(System.currentTimeMillis()), "foo", 60, 100, 100000L, 1000, 5000L, 123456L, 1000000L, 30000L, 3);

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class InstallationFinderTest {
 
-	@Test @Ignore
+	// @Test @Ignore
 	public void test() throws Exception {
 		InstallationFinder test = new InstallationFinder();
 		LinkedList<Installation> ret = test.findInstallations();

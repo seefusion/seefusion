@@ -9,6 +9,6 @@ dependencies {
     implementation project(':seefusion-util')
     testCompileOnly 'junit:junit:4.11'
     compileOnly 'org.apache.tomcat:tomcat-catalina:7.0.4'
-	implementation 'com.amazonaws:aws-java-sdk:1.11.15'
+	implementation 'com.amazonaws:aws-java-sdk:1.12.405'
 }
 

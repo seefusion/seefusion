@@ -13,7 +13,7 @@ public class HttpRequestMapTest {
 	// need to make this test portable
 	//@Before
 	public void setup() throws IOException {
-		test = HttpRequestMap.getInstance("../../seefusion-5.ui/dist");
+		test = HttpRequestMap.getInstance("../seefusion-ui/dist");
 	}
 
 	//@Test

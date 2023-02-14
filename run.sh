@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 cd $(dirname $0)
-cp build/libs/seefusion*.jar localtest/seefusion5.jar
-cd localtest
+cp build/libs/seefusion*.jar testpages/seefusion5.jar
+cd testpages
 if command -v podman &> /dev/null
 then
 	CONTAINER_MANAGER=podman

@@ -20,7 +20,8 @@ class MockSocketTalker extends HttpTalker {
 		super(sf, s);
 		this.mockSocket = s;
 		this.httpRequest = new HttpRequest(sf, req);
-		configProperties = ResourceBundle.getBundle("com.seefusion.config");
+		String configJsonRaw = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("com/seefusion/config.json"))).lines().collect(Collectors.joining("\n"));
+		this.configJson = new JSONArray(configJsonRaw);
 	}
 	
 	@Override
