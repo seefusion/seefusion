@@ -9,4 +9,4 @@ else
 fi
 $CONTAINER_MANAGER image list | grep -Eq 'gradle[[:space:]]+jdk8' || $CONTAINER_MANAGER pull gradle:jdk8
 rsync -a --delete seefusion-ui/dist/* seefusion-main/src/main/resources/ui/
-"$CONTAINER_MANAGER" run --rm -u root -v "$PWD":/home/gradle/project:rw -w /home/gradle/project gradle:jdk8 gradle --no-daemon --warning-mode all -x test clean build "$@"
+"$CONTAINER_MANAGER" run --rm -u root -v "$PWD":/home/gradle/project:rw -w /home/gradle/project gradle:jdk8 gradle --no-daemon --warning-mode all -x test build "$@"

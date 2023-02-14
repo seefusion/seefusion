@@ -1352,4 +1352,69 @@ class OracleConnectionImpl extends ConnectionImpl implements OracleConnection {
 		
 	}
 
+	@Override
+	public oracle.jdbc.diagnostics.SecuredLogger getLogger() throws SQLException {
+		return oc.getLogger();
+	}
+
+	@Override
+	public void dumpLog() throws SQLException {
+		oc.dumpLog();
+	}
+
+	@Override
+	public void enableLogging() throws SQLException {
+		oc.enableLogging();
+	}
+
+	@Override
+	public void disableLogging() throws SQLException {
+		oc.disableLogging();
+	}
+
+	@Override
+	public String getNetConnectionId() throws SQLException {
+		return oc.getNetConnectionId();
+	}
+
+	@Override
+	public String getChecksumProviderName() throws SQLException {
+		return oc.getChecksumProviderName();
+	}
+
+	@Override
+	public String getEncryptionProviderName() throws SQLException {
+		return oc.getEncryptionProviderName();
+	}
+
+	@Override
+	public void setShardingKey(oracle.jdbc.OracleShardingKey key) throws SQLException {
+		oc.setShardingKey(key);
+	}
+
+	@Override
+	public boolean setShardingKeyIfValid(oracle.jdbc.OracleShardingKey key, int timeout) throws SQLException {
+		return oc.setShardingKeyIfValid(key, timeout);
+	}
+
+	@Override
+	public oracle.jdbc.aq.AQMessage dequeue​(String queueName, oracle.jdbc.aq.AQDequeueOptions opt, byte[] tdo, int version) throws SQLException {
+		return oc.dequeue(queueName, opt, tdo, version);
+	}
+
+	@Override
+	public oracle.jdbc.aq.AQMessage[] dequeue​(String queueName, oracle.jdbc.aq.AQDequeueOptions opt, byte[] tdo, int version, int undoc) throws SQLException {
+		return oc.dequeue(queueName, opt, tdo, version, undoc);
+	}
+
+	@Override
+	public oracle.jdbc.aq.AQMessage[] dequeue​(String queueName, oracle.jdbc.aq.AQDequeueOptions opt, String x, int y) throws SQLException {
+		return oc.dequeue(queueName, opt, x, y);
+	}
+
+	@Override
+	public int enqueue(String queueName,oracle.jdbc.aq.AQEnqueueOptions opt, oracle.jdbc.aq.AQMessage[] mesgs) throws SQLException {
+		return oc.enqueue(queueName, opt, mesgs);
+	}
+	
 }

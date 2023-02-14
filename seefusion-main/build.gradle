@@ -15,12 +15,13 @@ dependencies {
     implementation project(':seestack')
     implementation 'javax.servlet:javax.servlet-api:3.1.0'
     implementation 'org.apache.tomcat:tomcat-catalina:7.0.4'
+    // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8
+    implementation 'com.oracle.database.jdbc:ojdbc8:21.7.0.0'
     testImplementation 'org.jmockit:jmockit:1.22'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.apache.derby:derby:10.12.1.1'
     testImplementation 'net.sourceforge.jtds:jtds:1.2.8'
     testImplementation 'mysql:mysql-connector-java:5.1.47'
-    implementation fileTree(dir: 'lib', include: ['*.jar'])
 }
 
 description = 'seefusion-main'
