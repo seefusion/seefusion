@@ -1,7 +1,6 @@
 /*
  * SeeFusion.java
  *
- * Created on August 16, 2004, 6:01 PM
  */
 
 package com.seefusion;
@@ -20,10 +19,6 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * 
- * @author TheArchitect
- */
 public final class SeeFusion implements Observer<Config> {
 
 	static {

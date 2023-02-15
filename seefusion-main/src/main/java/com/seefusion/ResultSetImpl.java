@@ -1,7 +1,7 @@
 /*
  * ResultSetImpl.java
  *
- * Created on July 31, 2004, 10:46 AM
+ * Wraps a connection's ResultSet object so SeeFusion can track relative time elapsed and number of rows returned
  */
 
 package com.seefusion;
@@ -16,10 +16,7 @@ import java.sql.SQLXML;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * 
- * @author TheArchitect
- */
+
 @SuppressWarnings("deprecation")
 class ResultSetImpl implements java.sql.ResultSet {
 	

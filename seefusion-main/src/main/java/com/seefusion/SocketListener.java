@@ -1,7 +1,9 @@
 /*
  * HttpListener.java
  *
- * Created on August 22, 2004, 7:39 PM
+ * This class listens on port 8999 (by default) and is the entry point for the web UI
+ * 
+ * Incoming connections are passed to instances of HttpTalker
  */
 
 package com.seefusion;
@@ -14,11 +16,6 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- *
- * @author  TheArchitect
- */
 class SocketListener extends SeeTask {
 	
 	private static final Logger LOG = Logger.getLogger(SocketListener.class.getName());

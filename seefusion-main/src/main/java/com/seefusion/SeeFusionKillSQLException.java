@@ -1,15 +1,9 @@
 /*
  * SeeFusionKillSqlException.java
- *
- * Created on February 12, 2005, 11:03 PM
  */
 
 package com.seefusion;
 
-/**
- *
- * @author Daryl
- */
 public class SeeFusionKillSQLException extends java.sql.SQLException {
     
     /**

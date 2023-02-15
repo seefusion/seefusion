@@ -1,7 +1,7 @@
 /*
  * ConnectionImpl.java
  *
- * Created on July 2, 2004, 10:33 AM
+ * Wrapper for database connection objects
  */
 
 package com.seefusion;
@@ -27,10 +27,6 @@ import java.util.concurrent.Executor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * 
- * @author TheArchitect
- */
 class ConnectionImpl implements java.sql.Connection {
 	
 	private static final Logger LOG = Logger.getLogger(ConnectionImpl.class.getName());
@@ -56,7 +52,7 @@ class ConnectionImpl implements java.sql.Connection {
 	protected boolean isTracingAPI = false;
 
 	/**
-	 * Creates a new instance of ConnectionImpl
+	 * Constructor.  Called by Driver when a new connection needs to be wrapped
 	 */
 	ConnectionImpl(java.sql.Connection c, Properties connectionProperties, Properties sfUrlOptions, Properties connectionMetadata, boolean isTracingAPI) {
 		super();

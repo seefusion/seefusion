@@ -1,7 +1,6 @@
 /*
  * WriterWrapper.java
  *
- * Created on September 15, 2004, 1:55 PM
  */
 
 package com.seefusion;

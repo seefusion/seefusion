@@ -1,7 +1,7 @@
 /*
- * Response.java
- *
- * Created on September 15, 2004, 1:01 PM
+ * HttpServletResponseWrapper
+ * 
+ * Used to monitor http response start time (relative to request start) and output size
  */
 
 package com.seefusion;

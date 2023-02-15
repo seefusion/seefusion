@@ -1,10 +1,3 @@
-/*
- * SeeFusionConnectorTest.java
- * JUnit based test
- *
- * Created on October 6, 2005, 2:27 PM
- */
-
 package com.seefusion;
 
 import static org.junit.Assert.assertNotNull;
@@ -15,10 +8,6 @@ import java.util.Properties;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- *
- * @author Daryl
- */
 @Ignore
 public class SeeFusionConnectorTest extends TestCase {
     

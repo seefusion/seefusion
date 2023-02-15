@@ -13,10 +13,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * 
- * @author Daryl
- */
 public class Config implements Observer<FileWatcher>, Subject<Config> {
 
 	private static final Logger LOG = Logger.getLogger(Config.class.getName());

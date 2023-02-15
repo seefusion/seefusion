@@ -1,7 +1,6 @@
 /*
  * OutputFormatter.java
  *
- * Created on November 21, 2004, 4:10 PM
  */
 
 package com.seefusion;
@@ -40,31 +39,31 @@ class OutputFormatter {
 		// server info row
 		params[0] = sf.getInstanceName();
 		params[1] = Util.dateFormat(System.currentTimeMillis());
-		params[2] = new Long(availMemory / 1048576);
-		params[3] = new Long(curMemory / 1048576);
+		params[2] = Long.valueOf(availMemory / 1048576);
+		params[3] = Long.valueOf(curMemory / 1048576);
 		params[4] = Util.msFormat(SeeFusion.getUptime());
 		messageFormats.format("contentheaderpre", params, output);
 		
 		// requests row
 		params[0] = "Request";
-		params[1] = new Long(stats[0].getAvgPageTime());
-		params[2] = new Float(stats[1].getPagesPerSecond());
-		params[3] = new Long(stats[1].getAvgPageTime());
-		params[4] = new Float(stats[2].getPagesPerSecond());
-		params[5] = new Long(stats[2].getAvgPageTime());
-		params[6] = new Long(counters.getTotalPageCount());
-		params[7] = new Integer(stats[0].getPageCount());
+		params[1] = Long.valueOf(stats[0].getAvgPageTime());
+		params[2] = Float.valueOf(stats[1].getPagesPerSecond());
+		params[3] = Long.valueOf(stats[1].getAvgPageTime());
+		params[4] = Float.valueOf(stats[2].getPagesPerSecond());
+		params[5] = Long.valueOf(stats[2].getAvgPageTime());
+		params[6] = Long.valueOf(counters.getTotalPageCount());
+		params[7] = Integer.valueOf(stats[0].getPageCount());
 		messageFormats.format("contentheaderavg", params, output);
 		
 		// queries row
 		params[0] = "Query";
-		params[1] = new Long(stats[0].getAvgQueryTime());
-		params[2] = new Float(stats[1].getQueriesPerSecond());
-		params[3] = new Long(stats[1].getAvgQueryTime());
-		params[4] = new Float(stats[2].getQueriesPerSecond());
-		params[5] = new Long(stats[2].getAvgQueryTime());
-		params[6] = new Long(counters.getTotalQueryCount());
-		params[7] = new Integer(stats[0].getQueryCount());
+		params[1] = Long.valueOf(stats[0].getAvgQueryTime());
+		params[2] = Float.valueOf(stats[1].getQueriesPerSecond());
+		params[3] = Long.valueOf(stats[1].getAvgQueryTime());
+		params[4] = Float.valueOf(stats[2].getQueriesPerSecond());
+		params[5] = Long.valueOf(stats[2].getAvgQueryTime());
+		params[6] = Long.valueOf(counters.getTotalQueryCount());
+		params[7] = Integer.valueOf(stats[0].getQueryCount());
 		messageFormats.format("contentheaderavg", params, output);
 
 		// end of that table
@@ -189,14 +188,14 @@ class OutputFormatter {
 		else {
 			params[3] = instanceName;
 		}
-		params[4] = new Integer(currentRequestsSize);
-		params[13] = new Integer(sf.getMaxRequests());
-		params[5] = new Float(stats[1].getPagesPerSecond());
-		params[6] = new Long(stats[1].getAvgPageTime());
-		params[7] = new Float(stats[2].getPagesPerSecond());
-		params[8] = new Long(stats[2].getAvgPageTime());
-		params[9] = new Long((availMemory - freeMemory) / 1048576);
-		params[10] = new Long(availMemory / 1048576);
+		params[4] = Integer.valueOf(currentRequestsSize);
+		params[13] = Integer.valueOf(sf.getMaxRequests());
+		params[5] = Float.valueOf(stats[1].getPagesPerSecond());
+		params[6] = Long.valueOf(stats[1].getAvgPageTime());
+		params[7] = Float.valueOf(stats[2].getPagesPerSecond());
+		params[8] = Long.valueOf(stats[2].getAvgPageTime());
+		params[9] = Long.valueOf((availMemory - freeMemory) / 1048576);
+		params[10] = Long.valueOf(availMemory / 1048576);
 		params[11] = Util.msFormat(SeeFusion.getUptime());
 		params[12] = sf.getInstanceName();
 		messageFormats.format("dashboarddetailserver", params, output);

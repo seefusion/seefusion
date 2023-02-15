@@ -1,7 +1,7 @@
 /*
  * StatementImpl.java
  *
- * Created on July 2, 2004, 2:51 PM
+ * Wraps a JDBC statement object when one is requested from a Connection
  */
 
 package com.seefusion;

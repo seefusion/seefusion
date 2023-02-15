@@ -1,7 +1,6 @@
 /*
  * ServletOutputStream.java
  *
- * Created on September 15, 2004, 1:09 PM
  */
 
 package com.seefusion;
@@ -11,10 +10,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.WriteListener;
 
-/**
- *
- * @author  Daryl
- */
 class ServletOutputStreamWrapper extends javax.servlet.ServletOutputStream {
     
 	HttpServletResponseWrapper notifyTarget;

@@ -1,10 +1,3 @@
-/*
- * PropertiesFilterWrapperTest.java
- * JUnit based test
- *
- * Created on November 3, 2005, 4:35 PM
- */
-
 package com.seefusion;
 
 import static org.junit.Assert.assertEquals;
@@ -14,10 +7,6 @@ import java.util.Properties;
 
 import org.junit.Test;
 
-/**
- *
- * @author Daryl
- */
 public class PropertiesFilterWrapperTest extends TestCase {
     
     /**

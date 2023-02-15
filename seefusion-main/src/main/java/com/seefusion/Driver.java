@@ -1,7 +1,8 @@
 /*
  * Driver.java
  *
- * Created on July 2, 2004, 10:22 AM
+ * This is the main entry point for the JDBC wrapper system.  Will accept `jdbc:seefusion` URLs
+ * and will produce wrapped database Connection objects that SeeFusion can monitor
  */
 
 package com.seefusion;

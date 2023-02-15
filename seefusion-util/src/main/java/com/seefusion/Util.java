@@ -1,9 +1,3 @@
-/*
- * Util.java
- *
- * Created on September 17, 2004, 9:33 PM
- */
-
 package com.seefusion;
 
 import java.io.BufferedReader;
@@ -38,8 +32,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Dumping ground for various static utility methods
  * 
- * @author Daryl
  */
 public class Util {
 

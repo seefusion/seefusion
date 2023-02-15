@@ -1,11 +1,7 @@
 /*
  * SeeFusionMain.java
  *
- * Created on November 2, 2005, 10:13 AM
- *
- * To change this template, choose Tools | Options and locate the template under
- * the Source Creation and Management node. Right-click the template and choose
- * Open. You can then make changes to the template in the Source Editor.
+ * Main entry point when called as an executable .jar file
  */
 
 package com.seefusion;
@@ -21,9 +17,9 @@ public class SeeFusionMain {
 
 	static final boolean DEBUG_ENABLED = true;
 	
-	public static final String COPYRIGHT = "Copyright (c)2004-"
+	public static final String COPYRIGHT = "Copyright (c)2005-"
 			+ java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
-			+ " Webapper Services, LLC";
+			+ " Daryl Banttari";
 
 	/** Creates a new instance of SeeFusionMain */
 	public SeeFusionMain() {

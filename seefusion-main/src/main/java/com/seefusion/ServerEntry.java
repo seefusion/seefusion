@@ -1,16 +1,11 @@
 /*
  * ServerEntry.java
- *
- * Created on August 22, 2004, 7:43 PM
  */
 
 package com.seefusion;
 
 import java.net.InetAddress;
-/**
- *
- * @author  TheArchitect
- */
+
 class ServerEntry {
     
     String name;

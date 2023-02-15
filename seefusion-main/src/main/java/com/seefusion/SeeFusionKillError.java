@@ -1,7 +1,6 @@
 /*
  * SeeFusionError.java
  *
- * Created on December 14, 2004, 12:52 PM
  */
 
 package com.seefusion;

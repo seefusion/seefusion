@@ -1,7 +1,6 @@
 /*
  * NotQuiteWriter.java
  *
- * Created on September 15, 2004, 4:17 PM
  */
 
 package com.seefusion;

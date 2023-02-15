@@ -6,10 +6,6 @@ package com.seefusion;
 import java.sql.Date;
 import java.util.UUID;
 
-/**
- * 
- * 
- */
 public class Counters extends DaoObjectImpl implements DaoObject {
 	
 	private String id;

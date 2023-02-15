@@ -1,11 +1,8 @@
 /*
  * Filter.java
- *
- * Created on June 23, 2005, 9:05 PM
- *
- * To change this template, choose Tools | Options and locate the template under
- * the Source Creation and Management node. Right-click the template and choose
- * Open. You can then make changes to the template in the Source Editor.
+ * The servlet filter that registers active web requests via SeeFusion.createRequest()
+ * At the end of the request, the request is deregistered via RequestInfo.close()
+ * This also appends debug output, if active
  */
 
 package com.seefusion;

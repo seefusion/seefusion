@@ -1,10 +1,3 @@
-/*
- * SeeFusionTest.java
- * JUnit based test
- *
- * Created on September 14, 2005, 1:33 AM
- */
-
 package com.seefusion;
 
 import static org.junit.Assert.assertFalse;
@@ -12,10 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- *
- * @author Daryl
- */
 @SuppressWarnings("PMD.AvoidUsingHardCodedIP")
 public class SeeFusionTest extends TestCase {
     

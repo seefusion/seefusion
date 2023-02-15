@@ -2,7 +2,6 @@
  * DriverTest.java
  * JUnit based test
  *
- * Created on November 2, 2005, 7:54 PM
  */
 
 package com.seefusion;
@@ -16,10 +15,6 @@ import java.util.Properties;
 
 import org.junit.Test;
 
-/**
- *
- * @author __USER__
- */
 public class DriverTest extends TestCase {
     
     /**

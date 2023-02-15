@@ -1,7 +1,6 @@
 /*
  * PreparedStatementImpl.java
  *
- * Created on July 2, 2004, 10:54 AM
  */
 
 package com.seefusion;

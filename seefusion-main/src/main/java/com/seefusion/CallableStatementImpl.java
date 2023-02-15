@@ -1,7 +1,7 @@
 /*
  * CallableStatementImpl.java
  *
- * Created on July 2, 2004, 2:34 PM
+ * Wrapper for callable statements (aka stored procedures)
  */
 
 package com.seefusion;

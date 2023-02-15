@@ -1,10 +1,3 @@
-/*
- * SeeFusionRequestTest.java
- * JUnit based test
- *
- * Created on October 6, 2005, 4:05 PM
- */
-
 package com.seefusion;
 
 import static org.junit.Assert.assertFalse;
@@ -14,10 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- *
- * @author Daryl
- */
 public class SeeFusionRequestTest extends TestCase {
     
     /**

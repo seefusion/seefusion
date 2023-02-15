@@ -1,7 +1,5 @@
 /*
  * HistorySecond.java
- *
- * Created on September 17, 2004, 12:24 PM
  */
 
 package com.seefusion;

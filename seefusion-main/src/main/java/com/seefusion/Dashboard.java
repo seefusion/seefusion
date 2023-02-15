@@ -1,7 +1,6 @@
 /*
  * Dashboard.java
  *
- * Created on December 11, 2004, 8:49 AM
  */
 
 package com.seefusion;

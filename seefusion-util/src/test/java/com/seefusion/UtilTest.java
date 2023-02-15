@@ -1,10 +1,3 @@
-/*
- * UtilTest.java
- * JUnit based test
- *
- * Created on September 1, 2005, 6:40 PM
- */
-
 package com.seefusion;
 
 import java.io.BufferedReader;
@@ -14,10 +7,6 @@ import java.util.Properties;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Daryl
- */
 public class UtilTest {
     
     /**
