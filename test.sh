@@ -7,6 +7,8 @@ then
 else
 	CONTAINER_MANAGER=docker
 fi
+$CONTAINER_MANAGER network exists seefusion-test || $CONTAINER_MANAGER create seefusion-test
 $CONTAINER_MANAGER image list | grep -Eq 'gradle[[:space:]]+jdk8' || $CONTAINER_MANAGER pull gradle:jdk8
 rsync -a --delete seefusion-ui/dist/* seefusion-main/src/main/resources/ui/
-"$CONTAINER_MANAGER" run --rm -u root -v "$PWD":/home/gradle/project:rw -w /home/gradle/project gradle:jdk8 gradle --no-daemon --warning-mode all clean build "$@"
+mkdir -p .gradle
+"$CONTAINER_MANAGER" run --net seefusion-test --rm -u root -v "$PWD":/home/gradle/project:rw -v "$PWD/.gradle":/home/gradle/.gradle -w /home/gradle/project gradle:jdk8 gradle --no-daemon --warning-mode all build "$@"

@@ -67,7 +67,7 @@ public class OracleStatementImplTest {
 	}
 	
 	private Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:seefusion:{jdbc:oracle:thin:@" + Util.getEnv("ORACLE", "localhost") + ":1521/XE};driver=oracle.jdbc.OracleDriver", "seefusion", "Seefus1on");
+		return DriverManager.getConnection("jdbc:seefusion:{jdbc:oracle:thin:@oracle:1521/XE};driver=oracle.jdbc.OracleDriver", "seefusion", "Seefus1on");
 	}
 	
 }

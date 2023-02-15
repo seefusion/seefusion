@@ -19,7 +19,7 @@ public class OracleConnectionImplTest extends ConnectionImplTest {
     
 	@Override
 	String getJdbcURL() {
-		return "jdbc:seefusion:{jdbc:oracle:thin:@" + Util.getEnv("ORACLE", "localhost") + ":1521:XE};driver=oracle.jdbc.driver.OracleDriver;dialect=oracle";
+		return "jdbc:seefusion:{jdbc:oracle:thin:@oracle:1521:XE};driver=oracle.jdbc.driver.OracleDriver;dialect=oracle";
 	}
 
 	@Override

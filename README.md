@@ -16,26 +16,29 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Building
+## Adding SeeFusion to your Tomcat-based app
+
+See `localtest/Dockerfile` for an example.
+
+## Using SeeFusion to troubleshoot your app
+
+TODO
+
+
+# Contributing
+
+## Building
 
 * Install Podman or Docker (or compatible containery thingy)
 * Run `./build.sh`
 * Look for `build/libs/seefusion5-[version].jar`
 
-# Did it work?
+## Integration Tests
+* If running Ubuntu on WSL, run `sudo update-alternatives --set iptables /usr/sbin/iptables-legacy` [Source](https://github.com/containers/podman/issues/14154)
+
+
+## Did it work?
 
 * Run `./run.sh`
 * Access [http://localhost:8888](http://localhost:8888) to see a test page
 * Access [http://localhost:8999](http://localhost:8999) to see SeeFusion showing the test page running
-
-# Adding SeeFusion to your Tomcat-based app
-
-See `localtest/Dockerfile` for an example.
-
-# Using SeeFusion to troubleshoot your app
-
-TODO
-
-# Contributing
-
-TODO

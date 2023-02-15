@@ -20,7 +20,7 @@ public class ConnectionImplSqlServerTest extends ConnectionImplTest {
 
 	@Override
 	String getJdbcURL() {
-		return "jdbc:seefusion:{jdbc:jtds:sqlserver://localhost/seefusion;prepareSQL=2};driver=net.sourceforge.jtds.jdbc.Driver;dialect=sqlserver";
+		return "jdbc:seefusion:{jdbc:jtds:sqlserver://mssql/seefusion;prepareSQL=2};driver=net.sourceforge.jtds.jdbc.Driver;dialect=sqlserver";
 	}
 
 	@Override

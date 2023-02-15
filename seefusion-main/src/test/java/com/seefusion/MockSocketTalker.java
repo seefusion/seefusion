@@ -1,8 +1,8 @@
 package com.seefusion;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ResourceBundle;
+import java.io.*;
+import java.util.stream.Collectors;
 
 class MockSocketTalker extends HttpTalker {
 
@@ -20,7 +20,8 @@ class MockSocketTalker extends HttpTalker {
 		super(sf, s);
 		this.mockSocket = s;
 		this.httpRequest = new HttpRequest(sf, req);
-		String configJsonRaw = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("com/seefusion/config.json"))).lines().collect(Collectors.joining("\n"));
+		// System.out.println(new File(".").getAbsolutePath());
+		String configJsonRaw = new BufferedReader(new InputStreamReader(new FileInputStream("./src/main/resources/com/seefusion/config.json"))).lines().collect(Collectors.joining("\n"));
 		this.configJson = new JSONArray(configJsonRaw);
 	}
 	

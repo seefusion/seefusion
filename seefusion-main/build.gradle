@@ -24,4 +24,10 @@ dependencies {
     testImplementation 'mysql:mysql-connector-java:5.1.47'
 }
 
+test {
+    jvmArgs '-Doracle.jdbc.timezoneAsRegion=false'
+}
+sourceSets.test {
+    resources.srcDirs = ["src/main/resources"]
+}
 description = 'seefusion-main'

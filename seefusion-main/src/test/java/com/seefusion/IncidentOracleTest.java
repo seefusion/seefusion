@@ -16,7 +16,7 @@ public class IncidentOracleTest extends IncidentDbTest {
 	@Override
 	String getJdbcUrl() throws ClassNotFoundException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		return "jdbc:oracle:thin:@" + Util.getEnv("ORACLE", "localhost") + ":1521:XE";
+		return "jdbc:oracle:thin:@oracle:1521:XE";
 	}
 
 	@Override

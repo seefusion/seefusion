@@ -12,7 +12,7 @@ public class IncidentMySqlTest extends IncidentDbTest {
 	@Override
 	String getJdbcUrl() throws ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
-		return "jdbc:mysql://" + Util.getEnv("MYSQL", "localhost") + "/seefusion";
+		return "jdbc:mysql://mysql/seefusion";
 	}
 
 	@Override

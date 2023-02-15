@@ -6,6 +6,7 @@ package com.seefusion;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -77,7 +78,15 @@ class HttpTalker extends SeeTask {
 		this.httpRequestMap = HttpRequestMap.getInstance(sf.getWebroot());
 		this.resources = sf.getResources();
 		this.messageFormats = new MessageFormatFactory(resources);
-		String configJsonRaw = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("com/seefusion/config.json"))).lines().collect(Collectors.joining("\n"));
+		String configJsonRaw;
+		try {
+			configJsonRaw = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("com/seefusion/config.json"))).lines().collect(Collectors.joining("\n"));
+		}
+		catch (NullPointerException e) {
+			// unit test?
+			configJsonRaw = new BufferedReader(new InputStreamReader(new FileInputStream("./src/main/resources/com/seefusion/config.json"))).lines().collect(Collectors.joining("\n"));
+
+		}
 		this.configJson = new JSONArray(configJsonRaw);
 	}
 

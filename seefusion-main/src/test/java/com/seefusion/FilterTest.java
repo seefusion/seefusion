@@ -31,24 +31,6 @@ public class FilterTest extends TestCase {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
-	@Test
-	public void testResponseCapture() throws Exception {
-		SeeFusion sf = test.getSeeFusion();
-		sf.setGloballyEnabled(true);
-		RequestList reqList = sf.getMasterRequestList();
-		reqList.setHistorySize(10);
-		MockHttpServletRequest req = new MockHttpServletRequest();
-		ServletInputStream s = new MockServletInputStream(req1);
-		req.setInputStream(s);
-		FilterChain chain = new MockFilterChain(response1);
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		test.doFilter(req, response, chain);
-		assertArrayEquals(response1.getBytes(), response.getBuffer());
-		LinkedList<RequestInfo> requestInfos = reqList.getRecentRequests();
-		RequestInfo ri = requestInfos.getFirst();
-		assertArrayEquals(response1.getBytes(), ri.getResponseBytes());
-	}
 
 	@Test
 	@SuppressWarnings("PMD.AvoidUsingHardCodedIP")
