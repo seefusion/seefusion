@@ -1,4 +1,4 @@
-# SeeFusion
+# SeeFusion - README
 
 ![SeeFusion Logo](logo-seefusion-1.png "SeeFusion Logo")
 
@@ -17,6 +17,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+## About
+
+SeeFusion provides detailed monitoring and troubleshooting information about Java Servlet apps, including Adobe ColdFusion and Lucee servers. SeeFusion tracks a variety of metrics, including active, recent and slow requests and queries, request and query bottlenecks, memory utlization levels, and more.
+
+Since this information is most useful when a server has appeared to stop responding, SeeFusion is designed to be accessed in an "out-of-band" fashion, by a browser or xml-aware process establishing a connection to a non-standard server port (e.g. port 8999).
+
+In addition, SeeFusion displays information about multiple servers in a convenient "dashboard" view, to allow for easily monitoring the status of large numbers of servers at once. You can also log metrics to a database for later analysis.
+
+SeeFusion collects its data though two methods; first, a Java-standard "servlet filter" tracks the requests that are currently running. Second, a Java DataBase Connectivity (JDBC) driver "wrapper" tracks the queries that are executed by that request. SeeFusion attempts to be as non-intrusive as possible by adding as little processing overhead as possible.
+
 ## Downloading
 
 The latest build is at [https://seefusion.s3.amazonaws.com/seefusion-5.6.FINAL.jar](https://seefusion.s3.amazonaws.com/seefusion-5.6.FINAL.jar)
@@ -29,6 +39,7 @@ If you're using SeeFusion with Tomcat, seefusion.jar should be placed in the tom
 ```bash
 java -jar /usr/local/tomcat/lib/seefusion5.jar --install tomcat /usr/local/tomcat/conf
 ```
+You can also just download the .jar file and run it via `java -jar seefusion-5*.jar`, and follow the prompts.
 
 ### Manual installation
 
@@ -39,6 +50,26 @@ You can either install it as a servlet filter using `com.seefusion.Filter`, but 
             <Valve className="com.seefusion.SeeFusionValve"/>
 ```
 
+## Wrapping datasources to enable database monitoring
+
+In order for SeeFusion to monitor your database access:
+* The JDBC Driver class should be changed to `com.seefusion.Driver`
+* The "JDBC Url" used by your application needs to be wrapped with `jdbc:seefusion:{...}`. For example,
+```
+jdbc:macromedia:sqlserver://127.0.0.1:1433; databaseName=SampleDS; SelectMethod=direct; sendStringParametersAsUnicode=false; MaxPooledStatements=1000;
+```
+becomes
+```
+jdbc:seefusion:{jdbc:macromedia:sqlserver://127.0.0.1:1433; databaseName=SampleDS; SelectMethod=direct; sendStringParametersAsUnicode=false; MaxPooledStatements=1000;}
+```
+Username / Password fields should remain unchanged.
+
+[Advanced JDBC driver options](JDBC.md) exist
+
+## Advanced configuration
+
+Other parameters can be set via SeeFusion.xml (in the same directory as SeeFusion5.jar) according to the options in [listed here](CONFIGURATION.md)
+
 ## Using SeeFusion to troubleshoot your app
 
 Connect to port 8999 on the monitored server and click around a bit to see what requests are running slow and why
@@ -47,42 +78,4 @@ TODO: This could maybe use a bit more info than that
 
 # Contributing
 
-## Building
-
-* Install Podman or Docker (or compatible containery thingy.)  If you're on Windows, use Windows Subsystem for Linux to clone the repo and/or run these scripts.
-* Run `./build.sh`
-* Look for `build/libs/seefusion5-[version].jar`
-
-## Did it work?
-
-* Run `./run.sh`
-* Access [http://localhost:8888](http://localhost:8888) to see a test page
-* Access [http://localhost:8999](http://localhost:8999) to see SeeFusion showing the test page running
-
-## Integration Tests
-* If running Ubuntu on WSL, run `sudo update-alternatives --set iptables /usr/sbin/iptables-legacy` [(Source)](https://github.com/containers/podman/issues/14154) to get Docker networking to work
-* Start the database server containers that are used for integration tests:
-```bash
-./mssql-docker.sh
-./mysql-docker.sh
-./oracle-docker.sh
-```
-* run `./test.sh`
-
-## Development Principles
-
-SeeFusion's guiding principles:
-* Be as thin as possible, both in terms of size and performance impact
-* The Hippocratic oath of monitoring tools is: "First, do no harm."  Carefully avoid doing things that might destabilize an application
-* Avoid dependencies on external packages whenever possible to avoid potential conflicts with an application's version(s) of the same jar(s)
-* Extreme situations are when SeeFusion is needed the most - if the JRE is still responsive at all, try to be available 
-
-An example of these in action: SeeFusion implements its own custom HTTP responder (I hesitate to call it a "web server")
-because when a server is experiencing poor performance, requests often can't get through the normal servlet backlog, so running this
-as a servlet is not reliable when you need it the most.  Using a third-party general-purpose web server would be much larger than this current implementation,
-and could potentially create conflicts if a customer application wants to use [a different version or instance of] that same server, or may cause conflicts with libraries
-that web server implementation might in turn depend on.  The very limited scope of this HTTP responder keeps its memory footprint tiny, its availability very high,
-and eliminates its potential to conflict with a monitored app.
-
-Another example: if SeeFusion's database logging system falls far behind for any reason, it'll just start throwing away data.  The alternatives (allowing queueing
-to consume memory without bound, or blocking the app until the log data can be queued) might impact the monitored application, and are therefore untenable.
+see [CONTRIBUTING.md](CONTRIBUTING.md)

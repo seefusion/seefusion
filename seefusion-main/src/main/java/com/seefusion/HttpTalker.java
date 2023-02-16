@@ -23,10 +23,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-/**
- * 
- * @author TheArchitect
- */
 class HttpTalker extends SeeTask {
 
 	private static final String CRLF = "\r\n";

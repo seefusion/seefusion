@@ -18,10 +18,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * 
- * @author TheArchitect
- */
 public class Driver implements java.sql.Driver {
 	
 	private static final Logger LOG = Logger.getLogger(Driver.class.getName());

@@ -17,11 +17,11 @@ import java.util.Map.Entry;
  */
 class RequestList extends SeeTask implements Subject<RequestList>, Cloneable {
 
-	LinkedHashMap<String, RequestInfo> currentRequests = new LinkedHashMap<String, RequestInfo>();
+	Map<String, RequestInfo> currentRequests = new LinkedHashMap<String, RequestInfo>();
 
-	private LinkedList<RequestInfo> recentPages = new LinkedList<RequestInfo>();
+	private List<RequestInfo> recentPages = new LinkedList<RequestInfo>();
 
-	private LinkedList<RequestInfo> recentSlowPages = new LinkedList<RequestInfo>();
+	private List<RequestInfo> recentSlowPages = new LinkedList<RequestInfo>();
 
 	private SuffixList historyIgnoreSuffixList;
 
@@ -79,9 +79,9 @@ class RequestList extends SeeTask implements Subject<RequestList>, Cloneable {
 	
 	/* (non-Javadoc)
 	 * @see com.seefusion.RequestList#getRecentRequests()
-	 * @returns LinkedList of Map.Entry
+	 * @returns LinkedList of RequestInfo
 	 */
-	public LinkedList<RequestInfo> getRecentRequests() {
+	public List<RequestInfo> getRecentRequests() {
 		// log("SeeFusion Classloader: " +
 		// this.getClass().getClassLoader().toString());
 		synchronized (this.currentRequests) {
@@ -96,9 +96,9 @@ class RequestList extends SeeTask implements Subject<RequestList>, Cloneable {
 
 	/* (non-Javadoc)
 	 * @see com.seefusion.RequestList#getSlowRequests()
-	 * @returns LinkedList of Map.Entry
+	 * @returns List of RequestInfo
 	 */
-	public LinkedList<RequestInfo> getSlowRequests() {
+	public List<RequestInfo> getSlowRequests() {
 		synchronized (this.currentRequests) {
 			return new LinkedList<RequestInfo>(this.recentSlowPages);
 		}

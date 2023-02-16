@@ -18,10 +18,6 @@ import java.sql.SQLException;
 import java.sql.SQLXML;
 import java.sql.Types;
 
-/**
- * 
- * @author TheArchitect
- */
 class PreparedStatementImpl extends StatementImpl implements java.sql.PreparedStatement {
 
 	java.sql.PreparedStatement ps;
